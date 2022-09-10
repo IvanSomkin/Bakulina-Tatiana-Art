@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <title>Купить картину | Мастерская Бакулиной Татьяны в Санкт-Петербурге</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
+    <meta name="description" content="Авторские картины, скульптуры и батики мастерской Бакулиной Татьяны в её любимом городе — Петербурге.">
+    <meta name="author" content="Ivan Somkin">
+    <meta name="robots" content="noindex">
+    <link href="/assets/pictures/logo/favicon.png" rel="icon"/>
+    <link href="/css/style.css" rel="stylesheet" />
+    <script src="/javascript/jquery-3.6.0.js"></script>
+  </head>
+  <body>
+    <div id="header-include-container"></div>
+    <main class="background_3">
+      <div class="main-section main-section_margin-vertical_small background_white">
+        <div class="product">
+          <div class="product__mini-image-choice">
+            <div id="00001-1" onclick="showBigImage(this.id)" class="product__mini-image-choice__mini-image">
+              <img src="/assets/pictures/shop/00001/00001-1.png">
+            </div>
+            <div id="00001-2" onclick="showBigImage(this.id)"class="product__mini-image-choice__mini-image">
+              <img src="/assets/pictures/shop/00001/00001-2.png">
+            </div>
+          </div>
+          <div class="product__big-image">
+            <img id="big-image" src="/assets/pictures/shop/00001/00001-1.png">
+          </div>
+          <div class="product__description">
+            <h1 class="product__description__title">Крылатка</h1>
+            <h2 class="product__description__price">15 000,00 ₽</h2>
+            <p class="product__description__size">Размер: 40 x 50 cм</p>
+            <p class="product__description__size-with-frame">Размер c оформлением: 55 x 67 см</p>
+            <p class="product__description__materials">Материалы: Тушь, гуашь, бумага</p>
+            <p class="product__description__frame">Оформление: Багет, паспарту чёрный бархат</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="footer-include-container"></div>
+    <script src="/javascript/load-components.js"></script> 
+    <script src="/javascript/mobile-menu-toggle.js"></script>
+    <script>
+      var first_image_id = $(".product__mini-image-choice")[0].getElementsByClassName("product__mini-image-choice__mini-image")[0].id
+      localStorage.setItem('product-big-image-id', first_image_id);
+      $("#" + first_image_id)[0].style.borderStyle = "solid";
+      function showBigImage(image_id)
+      {
+        var prev_image_id = localStorage.getItem('product-big-image-id');
+        $("#big-image")[0].src = $("#" + image_id)[0].getElementsByTagName("img")[0].src;
+        $("#" + prev_image_id)[0].style.borderStyle = "double";
+        $("#" + image_id)[0].style.borderStyle = "solid";
+        localStorage.setItem('product-big-image-id', image_id);
+      }
+    </script>
+  </body>
+</html>

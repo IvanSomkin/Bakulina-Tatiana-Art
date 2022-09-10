@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <title>Купить картину | Мастерская Бакулиной Татьяны в Санкт-Петербурге</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
+    <meta name="description" content="Авторские картины, скульптуры и батики мастерской Бакулиной Татьяны в её любимом городе — Петербурге.">
+    <meta name="author" content="Ivan Somkin">
+    <meta name="robots" content="noindex">
+    <link href="/assets/pictures/logo/favicon.png" rel="icon"/>
+    <link href="/css/style.css" rel="stylesheet" />
+    <script src="/javascript/jquery-3.6.0.js"></script>
+  </head>
+  <body>
+    <div id="header-include-container"></div>
+    <main class="background_1">
+      <div class="main-section main-section_margin-horizontal_small main-section_margin-vertical_small">
+        <div class="shop">
+          <div class="shop__title">
+            <h1>МАГАЗИН МАСТЕРСКОЙ</h1>
+          </div>
+          <div class="shop__filters">
+            <div class="shop__filters__title">
+              Фильтры:
+            </div>
+            <div class="shop__filters__container">
+
+            </div>
+          </div>
+          <div class="shop__gallery">
+            <div id="00001" onclick="showProduct(this.id)" class="shop__gallery__item">
+              <div class="shop__gallery__item__image">
+                <img src="/assets/pictures/shop/00001/00001-1.png">
+              </div>
+              <div class="shop__gallery__item__name">Крылатка</div>
+              <div class="shop__gallery__item__price">10 000,00 ₽</div>
+            </div>
+            <div id="00002" onclick="showProduct(this.id)" class="shop__gallery__item">
+              <div class="shop__gallery__item__image">
+                <img src="/assets/pictures/shop/00002/1.png">
+              </div>
+              <div class="shop__gallery__item__name">Ночные аллюзии</div>
+              <div class="shop__gallery__item__price">15 000,00 ₽</div>
+            </div>
+            <div id="00003" onclick="showProduct(this.id)" class="shop__gallery__item">
+              <div class="shop__gallery__item__image">
+                <img src="/assets/pictures/shop/00003/1.png">
+              </div>
+              <div class="shop__gallery__item__name">Шоколадная орхидея</div>
+              <div class="shop__gallery__item__price">От 20 000,00 ₽</div>
+            </div>
+            <div id="00004" onclick="showProduct(this.id)" class="shop__gallery__item">
+              <div class="shop__gallery__item__image">
+                <img src="/assets/pictures/shop/00004/1.png">
+              </div>
+              <div class="shop__gallery__item__name">Солнце, Луна и орхидея</div>
+              <div class="shop__gallery__item__price">От 10 000,00 ₽</div>
+            </div>
+            <div id="00005" onclick="showProduct(this.id)" class="shop__gallery__item">
+              <div class="shop__gallery__item__image">
+                <img src="/assets/pictures/shop/00005/1.png">
+              </div>
+              <div class="shop__gallery__item__name">Подарочная 1</div>
+              <div class="shop__gallery__item__price">1 000,00 ₽</div>
+            </div>           
+          </div>
+          <button onclick="scrollToTop()" class="shop__scroll-to-top-button">⮙</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="footer-include-container"></div>
+    <script src="/javascript/load-components.js"></script> 
+    <script src="/javascript/mobile-menu-toggle.js"></script>
+    <script src="/javascript/scroll-to-top.js"></script>
+    <script>
+      function showProduct(id)
+      {
+        window.location = "/htm/product.html"
+      }
+    </script>
+  </body>
+</html>

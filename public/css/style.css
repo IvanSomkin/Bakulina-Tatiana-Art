@@ -1,0 +1,682 @@
+@font-face {
+  font-family: 'EB Garamond'; 
+  src: url('../assets/fonts/EBGaramond/EBGaramond-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EB Garamond'; 
+  src: url('../assets/fonts/EBGaramond/EBGaramond-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EB Garamond'; 
+  src: url('../assets/fonts/EBGaramond/EBGaramond-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Droid Serif'; 
+  src: url('../assets/fonts/DroidSerif/DroidSerif-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+} 
+
+
+
+/* Default tags */
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  font-size: 100%;
+  background-color: #2E2E2F;
+}
+
+h1 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+  font-size: 36px;
+  color: black;
+  margin: 0px;
+}
+
+h2 {
+  font-family: 'EB Garamond', serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: black;
+  margin: 0px;
+  margin-top: 38px;
+  margin-bottom: 28px;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.4em;
+  color: black;
+  margin: 0;
+}
+
+ol {
+  counter-reset: item;
+  padding-left: 0;
+  margin: 0;
+}
+
+li {
+  display: block;
+}
+
+li > h2::before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+
+li > p::before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+  font-weight: bold;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+
+
+/* Sticky header and mobile menu responsible classes */
+
+.header-size {
+  min-height: 40px;
+  height: 10vh;
+}
+
+.absolute-header {
+  position: absolute;
+}
+
+.fixed-header {
+  position: fixed;
+}
+
+.menu-fixed-header {
+  position: fixed;
+}
+
+.display-none-default {
+  display: none;
+}
+
+
+
+/* Desktop menu */
+
+#desktop-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  top: 0;
+
+  background-color: white;
+  border-bottom: 2px solid #FFB700
+}
+
+#desktop-header__title {
+  display: flex;
+  flex-grow: 0.3;
+  justify-content: center;
+  align-items: center;
+}
+
+a#desktop-header__title {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+  font-size: 26px;
+  color: black;
+  margin: 0;
+}
+
+#desktop-header__menu {
+  display: flex;
+  flex-grow: 0.6;
+  flex-direction: row;
+}
+
+.desktop-header__menu__item {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+#desktop-header__menu a{
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 20px;
+  color: black;
+  margin: 0;
+}
+
+
+
+/* Mobile menu */
+
+#mobile-header {
+  display: none;
+  flex-direction: row;
+  width: 100%;
+  top: 0;
+
+  background-color: white;
+  border-bottom: 2px solid #FFB700;
+  z-index: 3;
+}
+
+#mobile-header__title {
+  display: flex;
+  width: 70%;
+  justify-content: center;
+  align-items: center;
+}
+
+a#mobile-header__title {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+  font-size: 26px;
+  color: black;
+  margin: 0;
+}
+
+#mobile-header__menu-button {
+  display: flex;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px;
+  box-sizing: border-box;
+}
+
+button#mobile-header__menu-button {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 26px;
+  color: black;
+
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+#mobile-menu-background {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  z-index: 2;
+
+  background-color: white;
+}
+
+#mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+  height: 60%;
+  top: 20%;
+}
+
+#mobile-menu a {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 28px;
+  color: black;
+  margin: 10px 0px;
+}
+
+.mobile-menu__item {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/* Empty relative block to fill the space for absolute header */
+
+.relative-header-filler {
+  position: relative;
+}
+
+
+
+/* Main body */
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 50vh;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 14px 0px;
+}
+
+.main-section_margin-horizontal_small {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.main-section_margin-horizontal_large {
+  margin-left: 17vw;
+  margin-right: 17vw;
+}
+
+.main-section_margin-vertical_small {
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+.main-section_margin-vertical_large {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.background_white {
+  background-color: white;
+}
+
+.background_1 {
+  background-image: url(../assets/pictures/background/background-1-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+.background_2 {
+  background-image: url(../assets/pictures/background/background-2-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+.background_3 {
+  background-image: url(../assets/pictures/background/background-3-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+.background_4 {
+  background-image: url(../assets/pictures/background/background-4-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+.background_5 {
+  background-image: url(../assets/pictures/background/background-5-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+.background_6 {
+  background-image: url(../assets/pictures/background/background-6-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+
+
+/* Footer */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  background-color: #2E2E2F;
+  box-shadow: 2px 0px 0px 0px rgba(0, 0, 0, 0.2);
+  padding: 20px 0px 50px 0px;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0px;
+}
+
+.footer-section address {
+  font-family: 'Droid Serif', serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 22px;
+  color: white;
+  margin: 8px 0px;
+}
+
+.footer-section a {
+  font-family: 'Droid Serif', serif;
+  font-size: 16px;
+  color: white;
+  margin: 5px 0px;
+}
+
+.footer-section p {
+  font-family: 'Droid Serif', serif;
+  font-size: 16px;
+  color: white;
+  margin: 5px 0px;
+}
+
+.footer-section__item {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-section__line {
+  width: 15%;
+  border-top: 1px solid white;
+  margin: 10px 0px;
+}
+
+
+
+/* Shop page main section */
+
+.shop {
+  width: 100%;
+}
+
+.shop__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.shop__title > h1 {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.shop__filters {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.shop__filters__title {
+  padding: 20px;
+  padding-left: 40px;
+  font-family: 'EBGaramond', serif;
+  font-size: 22px;
+}
+
+.shop__gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: white;
+  padding-bottom: 40px;
+}
+
+.shop__gallery__item {
+  flex-basis: 500px;
+  height: fit-content;
+  margin: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.shop__gallery__item__image {
+  overflow: hidden;
+  margin: 10px;
+}
+
+.shop__gallery__item__image > img {
+  width: 100%;
+  transition-duration: 400ms;
+}
+
+.shop__gallery__item__image > img:hover {
+  transform: scale(1.3);
+  transition-duration: 400ms;
+  transition-delay: 50ms;
+}
+
+.shop__gallery__item__name {
+  font-family: 'Droid Serif', serif;
+  font-size: 18px;
+  margin: 10px;
+  text-align: center;
+}
+
+.shop__gallery__item__price {
+  font-family: 'EB Garamond', serif;
+  font-size: 19px;
+  margin: 10px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: rgb(96, 94, 94);
+}
+
+.shop__scroll-to-top-button {
+  width: 100%;
+  padding-bottom: 10px;
+  padding-top: 5px;
+  font-size: 32px;
+  text-align: center;
+  background-color: white;
+  border-top: 1px solid lightgray;
+}
+
+
+
+/* Product page main section */
+
+.product {
+  display: flex;
+  flex-direction: row;
+  min-height: 105vh;
+}
+
+.product__mini-image-choice {
+  flex-grow: 0.5;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  padding: 40px 0px;
+  padding-bottom: 80px
+}
+
+.product__mini-image-choice__mini-image {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  padding: 5px;
+  border: 3px double gray;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.product__mini-image-choice__mini-image > img {
+  width: 100%;
+  height: 100%;
+  scale: 1.5;
+}
+
+.product__big-image {
+  flex-grow: 2;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 0px;
+}
+
+.product__big-image > img {
+  max-height: 100vh;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.product__description {
+  display: flex;
+  flex-grow: 1.5;
+  flex-basis: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  padding-bottom: 80px;
+}
+
+.product__description__title {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 32px;
+  color: black;
+  margin: 0px;
+}
+
+.product__description__price {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 26px;
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 28px;
+}
+
+
+/* Contacts page main section */
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.contacts__title {
+  font-family: "Georgia", 'Times New Roman', Times, serif;
+  font-size: 28px;
+  font-weight: bold;
+  font-style: italic;
+  margin-top: 50px;
+  margin-bottom: 24px;
+}
+
+.contacts__item {
+  font-family: "Georgia", 'Times New Roman', Times, serif;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+  margin: 12px;
+}
+
+.contacts__line {
+  width: 10%;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  margin: 5px 0px;
+}
+
+
+
+/* Privacy page main section */
+
+.privacy {
+  align-items: flex-start;
+  margin-left: 3vw;
+  margin-right: 3vw;
+}
+
+
+
+/* Phone changes */
+
+@media screen and (max-width: 1100px) {
+  .main-section_margin-horizontal_large {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  #desktop-header {
+    display: none;
+  }
+  #mobile-header {
+    display: flex;
+  }
+  #mobile-menu {
+    display: flex;
+  }
+  .main-section_margin-horizontal_large {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .product {
+    flex-direction: column;
+  }
+  .product__mini-image-choice {
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+  }
+  .product__big-image {
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 20px;
+  }
+  .product__description > h1 {
+    font-size: 48px;
+  }
+  .product__description > h2 {
+    font-size: 46px;
+  }
+  .product__description > p {
+    font-size: 26px;
+  }
+}

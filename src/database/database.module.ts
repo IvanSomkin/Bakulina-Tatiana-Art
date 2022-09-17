@@ -22,6 +22,7 @@ import { HelperService } from '../helper/helper.service';
         entities: [ShopItem,Material,FrameOption,FrameOptionPart],
         synchronize: false,
         ssl: true,
+        sslmode: 'require',
         sslfactory: 'org.postgresql.ssl.NonValidatingFactory'
       })
     })

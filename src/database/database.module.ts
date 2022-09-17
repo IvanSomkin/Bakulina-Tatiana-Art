@@ -21,7 +21,7 @@ import { HelperService } from '../helper/helper.service';
         database: helperService.getDbName(),
         entities: [ShopItem,Material,FrameOption,FrameOptionPart],
         synchronize: false,
-        sslmode: 'require'
+        sslmode: 'prefer'
       })
     })
   ]

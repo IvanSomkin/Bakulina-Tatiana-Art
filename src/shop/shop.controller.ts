@@ -1,16 +1,19 @@
-import { Controller, Get, Param, Render } from '@nestjs/common';
+import { Controller, Get, Param, Render, Res, UseInterceptors } from '@nestjs/common';
+import { LoggingInterceptor } from '../logging/logging.interceptor'
 import { ShopService } from './shop.service';
 import { join } from 'path';
 
-
+//@UseInterceptors(LoggingInterceptor)
 @Controller()
 export class ShopController {
   constructor(private readonly shopService: ShopService) {}
 
+  
   @Get(['/', 'shop'])
   @Render(join(__dirname, '..', '..', 'views/shop'))
   async getShopPage() {
-    return await this.shopService.getShopPage();
+    var shop_items = await this.shopService.getShopPage();
+    return shop_items
   }
 
   @Get('item/:id')

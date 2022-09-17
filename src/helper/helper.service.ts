@@ -5,7 +5,7 @@ export class HelperService {
   
   public dbHost: string;
   public dbPort: number;
-  public dbUser: string;
+  public dbUsername: string;
   public dbPassword: string;
   public dbName: string;
 
@@ -14,7 +14,7 @@ export class HelperService {
     var config = parse(process.env.DATABASE_URL)
     this.dbHost = config.host
     this.dbPort = config.port
-    this.dbUser = config.user
+    this.dbUsername = config.user
     this.dbPassword = config.password
     this.dbName = config.database
   }
@@ -27,7 +27,7 @@ export class HelperService {
     return this.dbPort;
   }
   getDbUsername(): string {
-    return this.dbUser;
+    return this.dbUsername;
   }
   getDbPassword(): string {
     return this.dbPassword;

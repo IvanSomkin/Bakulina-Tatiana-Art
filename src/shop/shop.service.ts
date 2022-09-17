@@ -12,15 +12,9 @@ export class ShopService {
   ) {}
 
   async getShopPage() {
-    try {
-      const shop_items = await this.shopItemRepository.find();
-      return { 
-        shop_items: shop_items
-      };
-    } catch (error) {
-      return { 
-        shop_gallery_error: '<p class="shop__gallery__error">Не удалось загрузить товары! :(<br>' + error.message + '</p>'
-      };
+    const shop_items = await this.shopItemRepository.find();
+    return { 
+      shop_items: shop_items
     }
   }
 
@@ -32,7 +26,6 @@ export class ShopService {
     })
 
     const image_folder = './public/assets/pictures/shop/' + item_id;
-
     var image_paths = await readdir(image_folder)
 
     return {

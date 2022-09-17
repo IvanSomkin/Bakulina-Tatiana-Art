@@ -1,8 +1,8 @@
 function toggleMobileMenu()
 {
-  $("#mobile-header").toggleClass("menu-fixed-header")
-  $("#mobile-menu-background").toggleClass("display-none-default")
-  if ($("#mobile-menu-background").hasClass("display-none-default"))
+  $("#mobile-header").toggleClass("temporary-fixed-position")
+  $("#mobile-menu-background").toggleClass("display-none")
+  if ($("#mobile-menu-background").hasClass("display-none"))
   {
     $("#mobile-header__menu-button").text("☰ Меню")
   }

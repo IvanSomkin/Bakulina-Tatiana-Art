@@ -1,0 +1,35 @@
+<main class="background_3">
+  <section class="background_white margin-vertical_small">
+    <div class="item">
+      <div class="item__mini-image-choice">
+        {{#each image_paths}}
+          <div id="{{../item_id}}-{{@index}}" onclick="switchBigImage(this.id)" class="item__mini-image-choice__mini-image">
+            <img src="../assets/pictures/shop/{{../item_id}}/{{this}}">
+          </div>
+        {{/each}}
+      </div>
+      <div class="item__big-image">
+        <img id="big-image" src="../assets/pictures/shop/{{item_id}}/{{item_id}}-1.png">
+      </div>
+      <div class="item__description">
+        <h1 class="item__description__name">{{name}}</h1>
+        <h2 class="item__description__price">{{price}} ₽</h2>
+        <p class="item__description__detail">Размер: {{size_x}} x {{size_y}} cм</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+  var first_image_id = $(".item__mini-image-choice")[0].getElementsByClassName("item__mini-image-choice__mini-image")[0].id
+  localStorage.setItem('product-big-image-id', first_image_id);
+  $("#" + first_image_id)[0].style.borderStyle = "solid";
+
+  function switchBigImage(image_id) {
+    var prev_image_id = localStorage.getItem('product-big-image-id');
+    $("#big-image")[0].src = $("#" + image_id)[0].getElementsByTagName("img")[0].src;
+    $("#" + prev_image_id)[0].style.borderStyle = "double";
+    $("#" + image_id)[0].style.borderStyle = "solid";
+    localStorage.setItem('product-big-image-id', image_id);
+  }
+</script>

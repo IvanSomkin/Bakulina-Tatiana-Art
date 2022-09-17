@@ -59,6 +59,7 @@ h2 {
 }
 
 a {
+  color: black;
   text-decoration: none;
 }
 
@@ -435,7 +436,13 @@ a.footer-section-item {
   flex-wrap: wrap;
   justify-content: center;
   background-color: white;
-  padding-bottom: 40px;
+  padding: 40px 0px;
+}
+
+.shop__gallery__error {
+  font-family: 'EB Garamond';
+  font-size: 22px;
+  text-align: center;
 }
 
 .shop__gallery__item {
@@ -447,13 +454,19 @@ a.footer-section-item {
 }
 
 .shop__gallery__item__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
   margin: 10px;
+  height: 500px;
+  max-height: 500px;
 }
 
 .shop__gallery__item__image > img {
-  width: 100%;
+  max-height: 100%;
   transition-duration: 400ms;
+  max-width: 100%;
 }
 
 .shop__gallery__item__image > img:hover {
@@ -492,13 +505,14 @@ a.footer-section-item {
 
 /* Product page main section */
 
-.product {
+.item {
   display: flex;
   flex-direction: row;
   min-height: 105vh;
+  width: 100%;
 }
 
-.product__mini-image-choice {
+.item__mini-image-choice {
   flex-grow: 0.5;
   flex-basis: 0;
   display: flex;
@@ -510,7 +524,7 @@ a.footer-section-item {
   padding-bottom: 80px
 }
 
-.product__mini-image-choice__mini-image {
+.item__mini-image-choice__mini-image {
   width: 50px;
   height: 50px;
   margin: 10px;
@@ -520,13 +534,13 @@ a.footer-section-item {
   overflow: hidden;
 }
 
-.product__mini-image-choice__mini-image > img {
+.item__mini-image-choice__mini-image > img {
   width: 100%;
   height: 100%;
   scale: 1.5;
 }
 
-.product__big-image {
+.item__big-image {
   flex-grow: 2;
   flex-basis: 0;
   display: flex;
@@ -539,13 +553,13 @@ a.footer-section-item {
   padding-right: 0px;
 }
 
-.product__big-image > img {
+.item__big-image > img {
   max-height: 100vh;
   max-width: 100%;
   box-sizing: border-box;
 }
 
-.product__description {
+.item__description {
   display: flex;
   flex-grow: 1.5;
   flex-basis: 0;
@@ -555,7 +569,7 @@ a.footer-section-item {
   padding-bottom: 80px;
 }
 
-.product__description__title {
+.item__description__name {
   font-family: 'EB Garamond', serif;
   font-weight: normal;
   font-size: 32px;
@@ -563,7 +577,7 @@ a.footer-section-item {
   margin: 0px;
 }
 
-.product__description__price {
+.item__description__price {
   font-family: 'EB Garamond', serif;
   font-weight: normal;
   font-size: 26px;
@@ -650,7 +664,7 @@ a.footer-section-item {
   .product {
     flex-direction: column;
   }
-  .product__mini-image-choice {
+  .item__mini-image-choice {
     flex-direction: row;
     align-items: center;
     padding-top: 20px;
@@ -658,18 +672,18 @@ a.footer-section-item {
     padding-right: 40px;
     padding-bottom: 20px;
   }
-  .product__big-image {
+  .item__big-image {
     flex-direction: row;
     align-items: center;
     padding: 0px 20px;
   }
-  .product__description__title {
+  .item__description__title {
     font-size: 48px;
   }
-  .product__description__price {
+  .item__description__price {
     font-size: 42px;
   }
-  .product__description > p {
+  .item__description > p {
     font-size: 22px;
   }
 }

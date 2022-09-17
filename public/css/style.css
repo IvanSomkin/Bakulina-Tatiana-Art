@@ -687,3 +687,7 @@ a.footer-section-item {
     font-size: 22px;
   }
 }
+
+#load-time {
+  color: white;
+}

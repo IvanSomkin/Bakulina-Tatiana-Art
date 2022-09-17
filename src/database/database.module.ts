@@ -21,6 +21,8 @@ import { HelperService } from '../helper/helper.service';
         database: helperService.getDbName(),
         entities: [ShopItem,Material,FrameOption,FrameOptionPart],
         synchronize: false,
+        ssl: true,
+        sslfactory: 'org.postgresql.ssl.NonValidatingFactory'
       })
     })
   ]

@@ -20,8 +20,12 @@ import { HelperService } from '../helper/helper.service';
         password: helperService.getDbPassword(),
         database: helperService.getDbName(),
         entities: [ShopItem,Material,FrameOption,FrameOptionPart],
-        synchronize: false,
-        sslmode: 'prefer'
+        synchronize: true,
+        extra: {
+          ssl: {
+            rejectUnauthorized: false
+          }
+        }
       })
     })
   ]

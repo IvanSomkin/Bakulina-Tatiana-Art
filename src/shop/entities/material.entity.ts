@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
  
-@Entity()
+@Entity({ schema: "shop" })
 export class Material {
   @PrimaryColumn()
   public id: number;

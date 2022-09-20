@@ -273,6 +273,19 @@ main > section {
   margin: 14px 0px;
 }
 
+
+
+/* Main body options */
+
+.flex-column-vertical-center {
+  justify-content:center;
+}
+
+.screen-height {
+  height: 100vh;
+  min-height: 500px;
+}
+
 .margin-horizontal_small {
   margin-left: 5vw;
   margin-right: 5vw;
@@ -281,6 +294,11 @@ main > section {
 .margin-horizontal_large {
   margin-left: 17vw;
   margin-right: 17vw;
+}
+
+.margin-horizontal_extra-large {
+  margin-left: 30vw;
+  margin-right: 30vw;
 }
 
 .margin-vertical_small {
@@ -632,12 +650,68 @@ a.footer-section-item {
 
 
 
+/* Forms */
+
+input {
+  appearance: none;
+}
+
+.form__title {
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.form__label {
+  margin-bottom: 15px;
+}
+
+.form__input_text {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+
+  font-family: Georgia, serif;
+  font-size: 18px; 
+}
+
+.form__login-button {
+  color: white;
+  background-color: black;
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  cursor: pointer;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+.form__login-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+
+
+/* Admin page main section */
+
+
+
+
+
 /* Phone changes */
 
 @media screen and (max-width: 1100px) {
   .margin-horizontal_large {
     margin-left: 5vw;
     margin-right: 5vw;
+  }
+  .margin-horizontal_extra-large {
+    margin-left: 20vw;
+    margin-right: 20vw;
   }
 }
 
@@ -652,6 +726,10 @@ a.footer-section-item {
     display: flex;
   }
   .margin-horizontal_large {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .margin-horizontal_extra-large {
     margin-left: 0;
     margin-right: 0;
   }

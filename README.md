@@ -10,6 +10,6 @@ It shows following **TypeORM** entities:
 
 **Material** — what *ShopItem* is made of, can be used in many *ShopItems* and *ShopItem* can have many *Materials*
 
-**FrameOption** — a variant of how ShopItem can be framed, stores option name (or null) and it's price which it will add to ShopItem's price when selected
+**FrameOption** — a variant of how *ShopItem* can be framed, stores option name (or null) and it's price which it will add to *ShopItem's* price when selected
 
-**FrameOption** — what FrameOption includes, similar to Materials for ShopItems
+**FrameOption** — what *FrameOption* includes, similar to *Materials* for *ShopItems*

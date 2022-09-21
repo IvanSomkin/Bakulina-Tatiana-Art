@@ -6,10 +6,6 @@ import { join } from 'path';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('contacts')
-  @Render(join(__dirname, '..', 'views/contacts'))
-  getContactsPage() {}
-
   @Get('privacy')
   @Render(join(__dirname, '..', 'views/privacy'))
   getPrivacyPage() {}

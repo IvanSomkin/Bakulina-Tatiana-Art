@@ -6,6 +6,7 @@ import { FrameOption } from '../shop/entities/frame-option.entity';
 import { FrameOptionPart } from '../shop/entities/frame-option-part.entity';
 import { HelperModule } from '../helper/helper.module';
 import { HelperService } from '../helper/helper.service';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
  
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { HelperService } from '../helper/helper.service';
         password: helperService.getDbPassword(),
         database: helperService.getDbName(),
         entities: [ShopItem,Material,FrameOption,FrameOptionPart],
+        namingStrategy: new SnakeNamingStrategy(),
         synchronize: true,
         extra: {
           ssl: {

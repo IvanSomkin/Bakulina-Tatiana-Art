@@ -1,4 +1,6 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToMany, JoinTable, OneToMany } from 'typeorm';
+import { FrameOption } from './frame-option.entity';
+import { Material } from './material.entity';
  
 @Entity({ schema: "shop" })
 export class ShopItem {
@@ -16,4 +18,11 @@ export class ShopItem {
 
   @Column()
   public price: number;
+
+  @ManyToMany(() => Material)
+  @JoinTable()
+  materials: Material[]
+
+  @OneToMany(() => FrameOption, (frameOption) => frameOption.shop_item)
+  frame_options: FrameOption[]
 }

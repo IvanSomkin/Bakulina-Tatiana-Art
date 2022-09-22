@@ -739,7 +739,7 @@ input {
   .shop__filters__title__text {
     font-size: 20px;
   }
-  .product {
+  .item {
     flex-direction: column;
   }
   .item__mini-image-choice {

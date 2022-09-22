@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm'
 import { ShopItem } from './entities/shop-item.entity'
 import { readdir } from 'node:fs/promises';
+import { OrderDto } from './dtos/order.dto';
 
 @Injectable()
 export class ShopService {
@@ -18,10 +19,10 @@ export class ShopService {
     }
   }
 
-  async getItemPage(item_id : string) {
+  async getItemPage(item_id: number) {
     const shop_item = await this.shopItemRepository.findOne({
       where: {
-        id: Number(item_id),
+        id: item_id,
       }
     })
 
@@ -35,6 +36,19 @@ export class ShopService {
       price: shop_item.price,
       size_x: shop_item.size_x,
       size_y: shop_item.size_y
+    }
+  }
+
+  async sendItemOrder(order: OrderDto) {
+    var item_page = await this.getItemPage(order.item_id)
+    return {
+      order_successful: true,
+      image_paths: item_page.image_paths,
+      item_id: item_page.item_id,
+      name: item_page.name,
+      price: item_page.name,
+      size_x: item_page.size_x,
+      size_y: item_page.size_y
     }
   }
 }

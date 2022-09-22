@@ -1,5 +1,5 @@
-import { Controller, Get, Param, Render, Res, UseInterceptors } from '@nestjs/common';
-import { LoggingInterceptor } from '../logging/logging.interceptor'
+import { Body, Controller, Get, Param, Render, Post, Redirect } from '@nestjs/common';
+import { OrderDto } from './dtos/order.dto';
 import { ShopService } from './shop.service';
 import { join } from 'path';
 
@@ -18,7 +18,14 @@ export class ShopController {
 
   @Get('item/:id')
   @Render(join(__dirname, '..', '..', 'views/shop_item'))
-  async getItemPage(@Param('id') id : string) {
+  async getItemPage(@Param('id') id: number) {
     return await this.shopService.getItemPage(id);
+  }
+
+  @Post('item/:id/order')
+  @Redirect('item/:id')
+  @Render(join(__dirname, '..', '..', 'views/shop_item'))
+  async sendItemOrder(@Body() order: OrderDto) {
+    return await this.shopService.sendItemOrder(order)
   }
 }

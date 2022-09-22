@@ -618,13 +618,15 @@ a.footer-section-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 200px;
   margin: 38px 0px;
+  margin-left: 150px;
 }
 
 .item-order-confirmation__text {
   font-weight: normal;
+  margin-bottom: 0px;
 }
 
 

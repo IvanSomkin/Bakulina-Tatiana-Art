@@ -741,6 +741,7 @@ input {
 .form__order-button {
   color: white;
   background-color: black;
+  border: 2px solid black;
   appearance: none;
   width: 100%;
   padding: 20px;
@@ -761,6 +762,7 @@ input {
 .form__order-button[disabled] {
   color: white;
   background-color: gray;
+  border: 2px solid gray;
 }
 
 

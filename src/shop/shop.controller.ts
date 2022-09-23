@@ -1,13 +1,12 @@
-import { Body, Controller, Get, Param, Render, Post, Redirect } from '@nestjs/common';
+import { Body, Controller, Get, Param, Res, Render, Post, Redirect, UseInterceptors } from '@nestjs/common';
 import { OrderDto } from './dtos/order.dto';
 import { ShopService } from './shop.service';
 import { join } from 'path';
+import { LoadTimeInterceptor } from 'src/interceptors/load-time.interceptor';
 
-//@UseInterceptors(LoggingInterceptor)
 @Controller()
 export class ShopController {
   constructor(private readonly shopService: ShopService) {}
-
   
   @Get(['/', 'shop'])
   @Render(join(__dirname, '..', '..', 'views/shop'))

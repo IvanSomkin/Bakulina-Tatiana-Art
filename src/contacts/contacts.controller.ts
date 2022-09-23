@@ -5,5 +5,7 @@ import { join } from 'path'
 export class ContactsController {
   @Get('contacts')
   @Render(join(__dirname, '..', '..', 'views/contacts'))
-  getContactsPage() {}
+  getContactsPage() {
+    return {};
+  }
 }

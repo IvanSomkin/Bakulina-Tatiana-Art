@@ -8,5 +8,7 @@ export class PortfolioController {
   
   @Get('portfolio')
   @Render(join(__dirname, '..', '..', 'views/portfolio'))
-  getPortfolioPage() {}
+  getPortfolioPage() {
+    return {};
+  }
 }

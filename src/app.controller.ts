@@ -8,5 +8,7 @@ export class AppController {
 
   @Get('privacy')
   @Render(join(__dirname, '..', 'views/privacy'))
-  getPrivacyPage() {}
+  getPrivacyPage() {
+    return {};
+  }
 }

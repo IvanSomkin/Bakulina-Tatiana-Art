@@ -46,7 +46,7 @@ export class ShopService {
       image_paths: item_page.image_paths,
       item_id: item_page.item_id,
       name: item_page.name,
-      price: item_page.name,
+      price: item_page.price,
       size_x: item_page.size_x,
       size_y: item_page.size_y
     }

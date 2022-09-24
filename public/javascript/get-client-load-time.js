@@ -1,6 +1,6 @@
 var initial_time = new Date().getTime();
 
-$(document).ready(function () {
+$(window).on('load', function () {
   var write_element = document.getElementById("client-load-time");
 
   var full_load_time = new Date().getTime();

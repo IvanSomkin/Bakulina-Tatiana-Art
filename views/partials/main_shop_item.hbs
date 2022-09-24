@@ -62,13 +62,13 @@
   $('#order-form').submit(function(e){
     e.preventDefault();
     $.ajax({
-        url: '/shop/order',
-        type: 'POST',
-        data: $('#order-form').serialize(),
-        success: function() {
-          $('.item-order__form')[0].style.display = 'none';
-          $('.item-order__confirmation')[0].style.display = 'flex';
-        }
+      url: '/shop/order',
+      type: 'POST',
+      data: $('#order-form').serialize(),
+      success: function() {
+        $('.item-order__form')[0].style.display = 'none';
+        $('.item-order__confirmation')[0].style.display = 'flex';
+      }
     });
   });
 </script>

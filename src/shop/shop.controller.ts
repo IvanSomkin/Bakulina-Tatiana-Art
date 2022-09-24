@@ -36,8 +36,7 @@ export class ShopController {
   @Get('shop/:id')
   @Render(join(__dirname, '..', '..', 'views/shop_item'))
   async getShopItemPage(@Param('id') id: number, @Res() res): Promise<ShopItemDto> {
-    const shop_item: ShopItemDto = await this.shopService.getShopItemPage(id)
-    return shop_item;
+    return await this.shopService.getShopItemPage(id);
   }
 
   @ApiOperation({

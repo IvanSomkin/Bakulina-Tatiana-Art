@@ -20,7 +20,7 @@ export class AdminController {
   @Get()
   @Render(join(__dirname, '..', '..', 'views/administrator_login'))
   getAdminLoginPage() {
-    throw new NotImplementedException();
+    return {};
   }
 
   @ApiOperation({

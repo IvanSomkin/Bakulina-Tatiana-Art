@@ -972,6 +972,16 @@ input {
 
 }
 
+@media screen and (max-width: 640px) {
+  .contacts__title {
+    font-size: 22px;
+  }
+
+  .contacts__item {
+    font-size: 16px;
+  }
+}
+
 @media screen and (max-width: 360px) {
   #mobile-header__title {
     font-size: 18px;
@@ -986,7 +996,7 @@ input {
   }
 
   .contacts__item {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   a.footer-section-item {

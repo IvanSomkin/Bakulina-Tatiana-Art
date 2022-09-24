@@ -527,7 +527,7 @@ a.footer-section-item {
 .item {
   display: flex;
   flex-direction: row;
-  min-height: 105vh;
+  min-height: 110vh;
   width: 100%;
 }
 
@@ -992,7 +992,7 @@ input {
   }
 
   .contacts__title {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .contacts__item {

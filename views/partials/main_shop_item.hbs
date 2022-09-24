@@ -1,13 +1,5 @@
 <main class="background_3">
   <section class="background_white margin-vertical_small">
-    {{#if order_successful includeZero=false}}
-    <div class="item-order-confirmation-container">
-      <div class="item-order-confirmation">
-        <h1 class="item-order-confirmation__title">Ваш заказ отправлен!</h1>
-        <h2 class="item-order-confirmation__text">Мы свяжемся с вами по поводу оплаты и доставки в ближайшее время!</h2>
-      </div>
-    </div>
-    {{/if}}
     <div class="item">
       <div class="item__mini-image-choice">
         {{#each image_paths}}
@@ -26,13 +18,11 @@
         </div>
       </div>
     </div>
-    <div class="item-order-container">
-      {{#unless order_successful includeZero=false}}
-      <div class="item-order margin-horizontal_large">
-        <form action="/item/{{item_id}}/order" method="POST" id="order-form">
+    <div class="item-order">
+      <div class="item-order__form">
+        <form id="order-form" class="margin-horizontal_large">
           <h1 class="form__title">Заказ работы "{{name}}"</h1>
-          <input type="hidden" name="item_id" value="{{item_id}}">
-          <input type="hidden" name="frame_option_id" value="{{frame_option_id}}">
+          <input type="hidden" name="shop_item_id" value="{{item_id}}">
           <h2 class="form__label">Ваше имя:</h2>
           <input type="text" class="form__input_text" name="name" required></br>
           <h2 class="form__label">Ваш E-Mail:</h2>
@@ -40,46 +30,45 @@
           <h2 class="form__label">Ваш телефон:</h2>
           <input type="text" class="form__input_text" name="phone" required></br>
           <div class="form__checkbox">
-            <input type="checkbox" class="form__checkbox__button" name="personal" id="personal-check">
+            <input type="checkbox" class="form__checkbox__button" name="personal" id="personal-check" required>
             <p class="form__checkbox__label">Я даю согласие на обработку своего имени, E-Mail и телефона</p>
           </div>
           <input type="submit" value="Связаться со мной по деталям заказа" class="form__order-button" id="order-button"/>
         </form>
       </div>
-      {{/unless}}
+      <div class="item-order__confirmation">
+        <h1 class="item-order__confirmation__title">Ваш заказ отправлен!</h1>
+        <h2 class="item-order__confirmation__text">Мы свяжемся с Вами по поводу оплаты и доставки в ближайшее время!</h2>
+        <a class="width-100" href="/">
+          <button class="item-order__confirmation__go-back-button">Вернуться на главную</button>
+        </a>
+      </div>
     </div>
-  </div>
+    <!--
+    <div class="item-error">
+      <h1 class="item-error__title">Работа с таким артикулом не найдена!</h1>
+      <h2 class="item-error__text">Попробуйте проверить правильность адресной строки.</h2>
+      <a class="width-100" href="/">
+          <button class="item-error__go-back-button">Вернуться на главную</button>
+        </a>
+    </div>
+    -->
+  </section>
 </main>
+<script src="/javascript/mini-image-choice.js"></script>
+<script src="/javascript/personal-check.js"></script>
 <script>
-  var first_image_id = $(".item__mini-image-choice")[0].getElementsByClassName("item__mini-image-choice__mini-image")[0].id
-  localStorage.setItem('product-big-image-id', first_image_id);
-  $("#" + first_image_id)[0].style.borderStyle = "solid";
-
-  function switchBigImage(image_id)
-  {
-    var prev_image_id = localStorage.getItem('product-big-image-id');
-    $("#big-image")[0].src = $("#" + image_id)[0].getElementsByTagName("img")[0].src;
-    $("#" + prev_image_id)[0].style.borderStyle = "double";
-    $("#" + image_id)[0].style.borderStyle = "solid";
-    localStorage.setItem('product-big-image-id', image_id);
-  }
-</script>
-<script>
-  order_button = $('#order-button')[0];
-  personal_check = $('#personal-check')[0];
-  if (!personal_check.checked)
-  {
-    order_button.setAttribute('disabled', true);
-  }
-  personal_check.addEventListener('change', function()
-  {
-    if (this.checked)
-    {
-      order_button.removeAttribute('disabled');
-    }
-    else
-    {
-      order_button.setAttribute('disabled', true);
-    }
+  $('.item-order__confirmation')[0].style.display = 'none';
+  $('#order-form').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: '/shop/order',
+        type: 'POST',
+        data: $('#order-form').serialize(),
+        success: function() {
+          $('.item-order__form')[0].style.display = 'none';
+          $('.item-order__confirmation')[0].style.display = 'flex';
+        }
+    });
   });
 </script>

@@ -1,7 +1,18 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export class OrderDto {
-  item_id: number;
-  frame_option_id: number;
+  @ApiProperty()
+  shop_item_id: number;
+
+  @ApiProperty()
   name: string;
+
+  @ApiProperty()
   email: string;
+  
+  @ApiProperty()
   phone: string;
+
+  @ApiProperty()
+  personal: string;
 }

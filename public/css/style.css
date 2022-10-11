@@ -543,7 +543,7 @@ a.footer-section-item {
   padding-bottom: 80px
 }
 
-.item__mini-image-choice__mini-image {
+.item__mini-image-choice__image {
   width: 50px;
   height: 50px;
   margin: 10px;
@@ -553,7 +553,7 @@ a.footer-section-item {
   overflow: hidden;
 }
 
-.item__mini-image-choice__mini-image > img {
+.item__mini-image-choice__image > img {
   width: 100%;
   height: 100%;
   scale: 1.5;
@@ -778,16 +778,20 @@ input {
   appearance: none;
 }
 
-.form__title {
+
+
+/* Order form */
+
+.order-form__title {
   margin-top: 60px;
   margin-bottom: 50px;
 }
 
-.form__label {
+.order-form__label {
   margin-bottom: 15px;
 }
 
-.form__input_text {
+.order-form__input_text {
   box-sizing: border-box;
   width: 100%;
   padding: 10px;
@@ -796,19 +800,19 @@ input {
   font-size: 18px; 
 }
 
-.form__checkbox {
+.order-form__checkbox {
   display: flex;
   flex-direction: row;
   margin-top: 38px;
 }
 
-.form__checkbox__button {
+.order-form__checkbox__button {
   width: 25px;
   height: 25px;
   appearance: auto;
 }
 
-.form__checkbox__label {
+.order-form__checkbox__label {
   font-family: 'EB Garamond', serif;
   font-weight: normal;
   font-size: 24px;
@@ -817,7 +821,77 @@ input {
   margin-left: 10px;
 }
 
-.form__login-button {
+.order-form__submit-button {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  margin-top: 38px;
+  margin-bottom: 60px;
+  cursor: pointer;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+.order-form__submit-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.order-form__submit-button[disabled] {
+  color: white;
+  background-color: gray;
+  border: 2px solid gray;
+}
+
+
+
+/* Login form */
+
+.login-form__title {
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.login-form__label {
+  margin-bottom: 15px;
+}
+
+.login-form__input_text {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+
+  font-family: Georgia, serif;
+  font-size: 18px; 
+}
+
+.login-form__checkbox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 38px;
+}
+
+.login-form__checkbox__button {
+  width: 25px;
+  height: 25px;
+  appearance: auto;
+}
+
+.login-form__checkbox__label {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 24px;
+  color: black;
+  margin: 0px;
+  margin-left: 10px;
+}
+
+.login-form__submit-button {
   color: white;
   background-color: black;
   appearance: none;
@@ -831,37 +905,22 @@ input {
   font-size: 20px;
 }
 
-.form__login-button:hover {
+.login-form__submit-button:hover {
   color: black;
   background-color: white;
   border: 2px solid black;
 }
 
-.form__order-button {
-  color: white;
-  background-color: black;
-  border: 2px solid black;
-  appearance: none;
-  width: 100%;
-  padding: 20px;
-  margin-top: 38px;
-  margin-bottom: 60px;
-  cursor: pointer;
-
-  font-family: 'EB Garamond', serif;
-  font-size: 20px;
+.login-form__error {
+  color: red;
+  margin-top: 20px;
+  text-align: center;
 }
 
-.form__order-button:hover {
-  color: black;
-  background-color: white;
-  border: 2px solid black;
-}
-
-.form__order-button[disabled] {
-  color: white;
-  background-color: gray;
-  border: 2px solid gray;
+.login-form__success {
+  color: green;
+  margin-top: 20px;
+  text-align: center;
 }
 
 
@@ -1022,4 +1081,184 @@ input {
 
 .width-100 {
   width: 100%;
+}
+
+.flex-basis-100 {
+  flex-basis: 100%;
+}
+
+
+
+/* Admin page */
+
+.admin__user {
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+.admin__user__signout {
+  cursor: pointer;
+}
+
+.admin__shop {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: white;
+  padding: 40px 40px;
+}
+
+.admin__shop__item {
+  flex-basis: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px;
+  background-color: white;
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+.admin__shop__item__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.admin__shop__item__image > img {
+  max-height: 100%;
+  transition-duration: 400ms;
+  max-width: 100%;
+}
+
+/*
+.admin__shop__item__image > img:hover {
+  transform: scale(1.3);
+  transition-duration: 400ms;
+  transition-delay: 50ms;
+}
+*/
+
+.admin__shop__item__name {
+  font-family: 'Droid Serif', serif;
+  font-size: 18px;
+  margin: 10px;
+  text-align: center;
+}
+
+.admin__shop__item__price {
+  font-family: 'EB Garamond', serif;
+  font-size: 19px;
+  margin: 10px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: rgb(96, 94, 94);
+}
+
+
+
+/* Admin shop item editor page */
+
+.item-editor {
+  display: flex;
+  flex-direction: row;
+  min-height: 110vh;
+  width: 100%;
+}
+
+.item-editor__mini-image-choice {
+  flex-grow: 0.5;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  padding: 40px 0px;
+  padding-bottom: 80px
+}
+
+.item-editor__mini-image-choice__image {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  padding: 5px;
+  border: 3px double gray;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.item-editor__mini-image-choice__image > img {
+  width: 100%;
+  height: 100%;
+  scale: 1.5;
+}
+
+.item-editor__mini-image-choice__add {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  padding: 5px;
+  border: 3px double gray;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.item-editor__mini-image-choice__add > img {
+  width: 100%;
+  height: 100%;
+  scale: 1.5;
+}
+
+.item-editor__big-image {
+  flex-grow: 2;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 0px;
+}
+
+.item__big-image > img {
+  max-height: 100vh;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.item__description {
+  display: flex;
+  flex-grow: 1.5;
+  flex-basis: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  padding-bottom: 80px;
+}
+
+.item__description__name {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 42px;
+  color: black;
+  margin: 0px;
+}
+
+.item__description__price {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 28px;
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 28px;
+}
+
+.item__description__detail {
+  font-size: 22px;
 }

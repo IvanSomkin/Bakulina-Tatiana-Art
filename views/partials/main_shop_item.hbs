@@ -3,7 +3,7 @@
     <div class="item">
       <div class="item__mini-image-choice">
         {{#each image_paths}}
-          <div id="{{../item_id}}-{{@index}}" onclick="switchBigImage(this.id)" class="item__mini-image-choice__mini-image">
+          <div id="{{../item_id}}-{{@index}}" onclick="switchBigImage(this.id)" class="item__mini-image-choice__image">
             <img src="/assets/pictures/shop/{{../item_id}}/{{this}}">
           </div>
         {{/each}}
@@ -21,19 +21,19 @@
     <div class="item-order">
       <div class="item-order__form">
         <form id="order-form" class="margin-horizontal_large">
-          <h1 class="form__title">Заказ работы "{{name}}"</h1>
+          <h1 class="order-form__title">Заказ работы "{{name}}"</h1>
           <input type="hidden" name="shop_item_id" value="{{item_id}}">
-          <h2 class="form__label">Ваше имя:</h2>
-          <input type="text" class="form__input_text" name="name" required></br>
-          <h2 class="form__label">Ваш E-Mail:</h2>
-          <input type="text" class="form__input_text" name="email" required></br>
-          <h2 class="form__label">Ваш телефон:</h2>
-          <input type="text" class="form__input_text" name="phone" required></br>
-          <div class="form__checkbox">
-            <input type="checkbox" class="form__checkbox__button" name="personal" id="personal-check" required>
-            <p class="form__checkbox__label">Я даю согласие на обработку своего имени, E-Mail и телефона</p>
+          <h2 class="order-form__label">Ваше имя:</h2>
+          <input type="text" class="order-form__input_text" name="name" required></br>
+          <h2 class="order-form__label">Ваш E-Mail:</h2>
+          <input type="text" class="order-form__input_text" name="email" required></br>
+          <h2 class="order-form__label">Ваш телефон:</h2>
+          <input type="text" class="order-form__input_text" name="phone" required></br>
+          <div class="order-form__checkbox">
+            <input type="checkbox" class="order-form__checkbox__button" name="personal" id="personal-check" required>
+            <p class="order-form__checkbox__label">Я даю согласие на обработку своего имени, E-Mail и телефона</p>
           </div>
-          <input type="submit" value="Связаться со мной по деталям заказа" class="form__order-button" id="order-button"/>
+          <input type="submit" value="Связаться со мной по деталям заказа" class="order-form__submit-button personal-submit-button" id="order-button"/>
         </form>
       </div>
       <div class="item-order__confirmation">
@@ -55,8 +55,20 @@
     -->
   </section>
 </main>
-<script src="/javascript/mini-image-choice.js"></script>
-<script src="/javascript/personal-check.js"></script>
+<script>
+  var first_image_id = $(".item__mini-image-choice")[0].getElementsByClassName("item__mini-image-choice__image")[0].id
+  localStorage.setItem('shop-item-big-image-id', first_image_id);
+  $("#" + first_image_id)[0].style.borderStyle = "solid";
+
+  function switchBigImage(image_id)
+  {
+    var prev_image_id = localStorage.getItem('shop-item-big-image-id');
+    $("#big-image")[0].src = $("#" + image_id)[0].getElementsByTagName("img")[0].src;
+    $("#" + prev_image_id)[0].style.borderStyle = "double";
+    $("#" + image_id)[0].style.borderStyle = "solid";
+    localStorage.setItem('shop-item-big-image-id', image_id);
+  }
+</script>
 <script>
   $('.item-order__confirmation')[0].style.display = 'none';
   $('#order-form').submit(function(e){
@@ -72,3 +84,4 @@
     });
   });
 </script>
+<script src="/javascript/personal-check.js"></script>

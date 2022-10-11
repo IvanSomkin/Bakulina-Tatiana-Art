@@ -16,7 +16,7 @@ export class ShopItem {
   public id: number;
 
   @ApiProperty()
-  @Column()
+  @Column({default: 0})
   public shop_position: number;
  
   @ApiProperty()
@@ -36,7 +36,7 @@ export class ShopItem {
   public price: number;
 
   @ApiProperty()
-  @Column()
+  @Column({default: 1})
   public amount_left: number;
 
   @Column({default: 'Selling'})

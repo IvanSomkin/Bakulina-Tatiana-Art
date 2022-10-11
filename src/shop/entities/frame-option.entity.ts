@@ -5,16 +5,11 @@ import { ShopItem } from './shop-item.entity';
 @Entity({ schema: "shop" })
 export class FrameOption {
   @PrimaryColumn()
-  public id: number;
- 
   @ManyToOne(() => ShopItem, (shop_item) => shop_item.frame_options)
   public shop_item: number;
 
-  @Column()
-  public description_tag: string;
-
-  @Column()
-  public option_text: string;
+  @PrimaryColumn()
+  public variant_id: number;
 
   @Column()
   public price: number;

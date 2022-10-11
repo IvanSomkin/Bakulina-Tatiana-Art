@@ -3,11 +3,21 @@ import { FrameOption } from './frame-option.entity';
 import { Material } from './material.entity';
 import { ApiProperty } from '@nestjs/swagger';
  
+export enum Status {
+  SELLING = "Selling",
+  CUSTOM = "Custom",
+  REMOVED = "Removed",
+}
+
 @Entity({ schema: "shop" })
 export class ShopItem {
   @ApiProperty()
   @PrimaryColumn()
   public id: number;
+
+  @ApiProperty()
+  @Column()
+  public shop_position: number;
  
   @ApiProperty()
   @Column()
@@ -25,10 +35,17 @@ export class ShopItem {
   @Column()
   public price: number;
 
+  @ApiProperty()
+  @Column()
+  public amount_left: number;
+
+  @Column({default: 'Selling'})
+  public status: string;
+
   @ManyToMany(() => Material)
   @JoinTable()
-  materials: Material[]
+  materials: Material[];
 
   @OneToMany(() => FrameOption, (frameOption) => frameOption.shop_item)
-  frame_options: FrameOption[]
+  frame_options: FrameOption[];
 }

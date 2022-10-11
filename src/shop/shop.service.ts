@@ -14,8 +14,12 @@ export class ShopService {
     private shopItemRepository: Repository<ShopItem>
   ) {}
 
-  async getShopPage(): Promise<ShopItemsDto> {
-    const shop_items = await this.shopItemRepository.find();
+  async getShopItems(): Promise<ShopItemsDto> {
+    const shop_items = await this.shopItemRepository.find({
+      order: {
+        shop_position: "ASC",
+      },
+    });
     return { 
       shop_items: shop_items
     }
@@ -29,7 +33,7 @@ export class ShopService {
     });
   }
 
-  async getShopItemPage(item_id: number): Promise<ShopItemDto> {
+  async getShopItem(item_id: number): Promise<ShopItemDto> {
     const shop_item_no_image = await this.getShopItemNoImage(item_id);
 
     if (shop_item_no_image == null) {

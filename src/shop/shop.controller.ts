@@ -1,10 +1,11 @@
-import { Body, Controller, Get, Param, Res, Render, Post, Redirect, UseInterceptors, NotFoundException } from '@nestjs/common';
+import { Body, Controller, Get, Param, Res, Render, Post, Redirect, UseInterceptors, NotFoundException, UseFilters } from '@nestjs/common';
 import { OrderDto } from './dtos/order.dto';
 import { ShopService } from './shop.service';
 import { join } from 'path';
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
 import { ShopItemDto } from './dtos/shop-item.dto';
 import { ShopItemsDto } from './dtos/shop-items.dto';
+import { LoadTimeInterceptor } from '../interceptors/load-time.interceptor'
 
 @Controller()
 @ApiTags('shop')
@@ -14,10 +15,11 @@ export class ShopController {
   @ApiOperation({
     summary: 'Visit the shop page'
   })
+  @UseInterceptors(LoadTimeInterceptor)
   @Get(['/', 'shop'])
   @Render(join(__dirname, '..', '..', 'views/shop'))
   async getShopPage(): Promise<ShopItemsDto> {
-    var shop_items = await this.shopService.getShopPage();
+    var shop_items = await this.shopService.getShopItems();
     return shop_items;
   }
 
@@ -36,7 +38,7 @@ export class ShopController {
   @Get('shop/:id')
   @Render(join(__dirname, '..', '..', 'views/shop_item'))
   async getShopItemPage(@Param('id') id: number, @Res() res): Promise<ShopItemDto> {
-    return await this.shopService.getShopItemPage(id);
+    return await this.shopService.getShopItem(id);
   }
 
   @ApiOperation({

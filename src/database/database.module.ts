@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ShopItem } from '../shop/entities/shop-item.entity';
-import { Material } from '../shop/entities/material.entity';
 import { FrameOption } from '../shop/entities/frame-option.entity';
-import { FrameOptionPart } from '../shop/entities/frame-option-part.entity';
 import { HelperModule } from '../helper/helper.module';
 import { HelperService } from '../helper/helper.service';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
@@ -20,7 +18,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
         username: helperService.getDbUsername(),
         password: helperService.getDbPassword(),
         database: helperService.getDbName(),
-        entities: [ShopItem,Material,FrameOption,FrameOptionPart],
+        entities: [ShopItem],
         namingStrategy: new SnakeNamingStrategy(),
         synchronize: true,
         extra: {

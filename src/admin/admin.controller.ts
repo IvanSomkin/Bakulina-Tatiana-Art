@@ -1,18 +1,13 @@
-import { Body, Controller, Delete, Get, NotImplementedException, Param, Post, Put, Render, UseFilters, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Render, Res, UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { join } from 'path';
-import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiCookieAuth } from '@nestjs/swagger';
 
-import { ChangeShopItemDto } from '../auth/dtos/change-shop-item.dto';
-import { ChangeMaterialDto } from '../auth/dtos/change-material.dto';
-import { DeleteShopItemDto } from '../auth/dtos/delete-shop-item.dto';
-import { DeleteMaterialDto } from '../auth/dtos/delete-material.dto';
+import { ChangeShopItemDto } from '../admin/dtos/change-shop-item.dto';
 import { ShopService } from '../shop/shop.service';
 import { AuthGuard } from '../auth/guards/auth.guard';
-import { Session } from '../auth/decorators/session.decorator';
-import { SessionContainer } from 'supertokens-node/recipe/session';
-import { symlink } from 'fs';
-import { SupertokensExceptionFilter } from 'src/auth/filters/auth.filter';
+import { CreateShopItemResponseDto } from './dtos/create-shop-item-response.dto';
+import { Response } from 'express';
 
 @Controller('administrator')
 @ApiTags('administrator')
@@ -20,7 +15,7 @@ export class AdminController {
   constructor(
     private readonly adminService: AdminService,
     private readonly shopService: ShopService,
-  ) {}
+  ) { }
 
   @ApiOperation({
     summary: 'Visit the admin login page'
@@ -34,11 +29,11 @@ export class AdminController {
   @ApiOperation({
     summary: 'Visit the admin page'
   })
+  @ApiCookieAuth()
   @Get()
   @UseGuards(new AuthGuard())
-  @UseFilters(new SupertokensExceptionFilter())
   @Render(join(__dirname, '..', '..', 'views/administrator'))
-  async getAdminPage(@Session() session: SessionContainer) {
+  async getAdminPage() {
     var shop_items_dto = await this.shopService.getShopItems();
     return {
       shop_items: shop_items_dto.shop_items,
@@ -46,12 +41,13 @@ export class AdminController {
   }
 
   @ApiOperation({
-    summary: 'Visit the admin page'
+    summary: 'Visit the shop item editor page'
   })
+  @ApiCookieAuth()
   @UseGuards(new AuthGuard())
   @Get('shop/:id')
   @Render(join(__dirname, '..', '..', 'views/administrator_shop_item'))
-  async getAdminShopItemPage(@Param('id') id) {
+  async getAdminShopItemPage(@Param('id') id: number) {
     var shop_item_dto = await this.shopService.getShopItem(id);
     return shop_item_dto;
   }
@@ -63,10 +59,14 @@ export class AdminController {
     status: 200,
     description: 'The new shop item has been added'
   })
+  @ApiCookieAuth()
   @UseGuards(new AuthGuard())
   @Post('shop/item')
-  addShopItem(@Body() changeShopItem: ChangeShopItemDto) {
-    throw new NotImplementedException();
+  async createShopItem(): Promise<CreateShopItemResponseDto> {
+    const item_id = await this.adminService.createShopItem();
+    return {
+      created_shop_item_id: item_id,
+    }
   }
 
   @ApiOperation({
@@ -76,10 +76,12 @@ export class AdminController {
     status: 200,
     description: 'The shop item with needed id has been deleted'
   })
+  @ApiCookieAuth()
   @UseGuards(new AuthGuard())
-  @Delete('shop/item')
-  deleteShopItem(@Body() deleteShopItem: DeleteShopItemDto) {
-    throw new NotImplementedException();
+  @Delete('shop/:id')
+  async removeShopItem(@Param('id') id: number, @Res() res: Response) {
+    await this.adminService.removeShopItem({ shop_item_id: id });
+    return res.redirect('/administrator');
   }
 
   @ApiOperation({
@@ -89,27 +91,10 @@ export class AdminController {
     status: 200,
     description: 'The shop item information has been updated'
   })
+  @ApiCookieAuth()
   @UseGuards(new AuthGuard())
-  @Put('shop/item')
-  updateShopItem(@Body() changeShopItem: ChangeShopItemDto) {
-    throw new NotImplementedException();
+  @Put('shop/:id')
+  async changeShopItem(@Body() changeShopItem: ChangeShopItemDto) {
+    await this.adminService.changeShopItem(changeShopItem);
   }
-
-  /*
-  @Post('shop/material')
-  addMaterial(@Body() changeMaterial: ChangeMaterialDto) {
-    throw new NotImplementedException();
-  }
-
-  
-  @Delete('shop/material')
-  deleteMaterial(@Body() deleteMaterial: DeleteMaterialDto) {
-    throw new NotImplementedException();
-  }
-
-  @Put('shop/material')
-  updateMaterial(@Body() changeMaterial: ChangeMaterialDto) {
-    throw new NotImplementedException();
-  }
-  */
 }

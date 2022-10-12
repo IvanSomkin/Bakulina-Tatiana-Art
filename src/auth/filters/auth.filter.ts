@@ -15,8 +15,8 @@ export class SupertokensExceptionFilter implements ExceptionFilter {
 
   catch(exception: Error, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
-
     const resp = ctx.getResponse<Response>();
+
     if (resp.headersSent) {
       return;
     }

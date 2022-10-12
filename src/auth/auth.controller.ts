@@ -1,11 +1,11 @@
 import { Body, Controller, Post, UseGuards } from "@nestjs/common";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { SignupAdminDto } from "../auth/dtos/signup-admin.dto";
 import { deleteUser } from "supertokens-node";
 import { SigninAdminDto } from "./dtos/signin-admin.dto";
 import { AuthGuard } from "./guards/auth.guard";
 
-@Controller()
+@Controller('auth')
 @ApiTags('auth')
 export class AuthController {
   constructor() { }
@@ -17,24 +17,24 @@ export class AuthController {
     status: 200,
     description: 'The user has logged in as admin'
   })
-  @Post('auth/signin')
+  @Post('signin')
   signinAsAdmin(@Body() signinAdminDto: SigninAdminDto) {
     return {};
   }
 
-  @ApiOperation({
-    summary: 'Sign up as admin'
-  })
+  /*
   @Post('auth/signup')
   signupAsAdmin(@Body() signupAdminDto: SignupAdminDto) {
     return {};
   }
+  */
 
   @ApiOperation({
     summary: 'Sign out as admin'
   })
+  @ApiCookieAuth()
   @UseGuards(new AuthGuard())
-  @Post('auth/signout')
+  @Post('signout')
   signoutAsAdmin() {
     return {};
   }

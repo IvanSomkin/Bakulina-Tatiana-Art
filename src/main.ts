@@ -7,6 +7,8 @@ import { LoadTimeInterceptor } from './interceptors/load-time.interceptor';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 import supertokens from 'supertokens-node';
+import { SupertokensExceptionFilter } from './auth/filters/auth.filter';
+import { HttpExceptionFilter } from './filters/app.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -17,7 +19,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   hbs.registerPartials(join(__dirname, '..', 'views/partials'));
-  app.useGlobalInterceptors(new LoadTimeInterceptor());
+
 
   const config = new DocumentBuilder()
     .setTitle('Bakulina Tatiana Art Shop')
@@ -33,7 +35,13 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // app.useGlobalFilters(new SupertokensExceptionFilter());
+  app.useGlobalInterceptors(new LoadTimeInterceptor());
+  app.useGlobalFilters(
+    new SupertokensExceptionFilter(),
+    new HttpExceptionFilter(),
+  );
+
+  console.log("App started!");
 
   await app.listen(configService.get('PORT') || 3000);
 }

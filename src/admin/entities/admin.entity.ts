@@ -2,9 +2,9 @@ import { Entity, PrimaryColumn, Column } from 'typeorm';
  
 @Entity({ schema: "admin" })
 export class Admin {
-  @PrimaryColumn()
-  public login: string;
+  @PrimaryColumn({ nullable: false })
+  public uuid: string;
  
-  @Column()
-  public password: string;
+  @Column({ nullable: false, default: 'Default' })
+  public name: string;
 }

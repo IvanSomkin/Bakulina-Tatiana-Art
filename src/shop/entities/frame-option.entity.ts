@@ -1,20 +1,22 @@
 import { Entity, PrimaryColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
-import { FrameOptionPart } from './frame-option-part.entity';
+import { Parameter } from './parameter.entity';
 import { ShopItem } from './shop-item.entity';
- 
+
 @Entity({ schema: "shop" })
 export class FrameOption {
+  /*
   @PrimaryColumn()
   @ManyToOne(() => ShopItem, (shop_item) => shop_item.frame_options)
-  public shop_item: number;
+  public shop_item_id: number;
+  */
 
-  @PrimaryColumn()
-  public variant_id: number;
+  @PrimaryColumn({ nullable: false, default: 0 })
+  public number: number;
 
-  @Column()
+  @Column({ nullable: false, default: 0 })
   public price: number;
 
-  @ManyToMany(() => FrameOptionPart)
+  @ManyToMany(() => Parameter)
   @JoinTable()
-  parts: FrameOptionPart[]
+  parts: Parameter[]
 }

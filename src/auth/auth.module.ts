@@ -15,6 +15,7 @@ import { SupertokensService } from './supertokens/supertokens.service';
   controllers: [AuthController],
 })
 export class AuthModule implements NestModule {
+
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(AuthMiddleware).forRoutes('*');
   }

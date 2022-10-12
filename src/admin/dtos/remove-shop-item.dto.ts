@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class DeleteMaterialDto {
+export class RemoveShopItemDto {
   @ApiProperty()
-  material_id: number;
+  shop_item_id: number;
 }

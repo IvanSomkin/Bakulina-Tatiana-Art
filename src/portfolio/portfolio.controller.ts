@@ -1,7 +1,7 @@
 import { Controller, Get, Render } from '@nestjs/common';
 import { PortfolioService } from './portfolio.service';
-import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
-import { join } from 'path';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { CustomerLayoutDto } from 'src/common/dtos/layout.dto';
 
 @Controller()
 @ApiTags('portfolio')
@@ -12,8 +12,11 @@ export class PortfolioController {
     summary: 'Visit the portfolio page'
   })
   @Get('portfolio')
-  @Render(join(__dirname, '..', '..', 'views/portfolio'))
-  getPortfolioPage() {
-    return {};
+  @Render('portfolio')
+  getPortfolioPage(): CustomerLayoutDto {
+    return {
+      title: 'Портфолио | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
+      description: 'Представляю вам примеры моих работ. От мира природы до модерна и абстракции - всё входит в мои творческие и жизненные интересы.',
+    };
   }
 }

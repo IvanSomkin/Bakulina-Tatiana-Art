@@ -1,29 +1,28 @@
 <main>
-  <section id="item-editor-section" class="background_white margin-vertical_small">
-    <div class="item-editor">
-      <div class="item-editor__mini-image-choice">
-        {{#each image_paths}}
-         <div id="{{../item_id}}-{{@index}}" onclick="switchBigImage(this.id)" class="item-editor__mini-image-choice__image">
-          <img src="/assets/pictures/shop/{{../item_id}}/{{this}}">
+  <section id="admin-item-section" class="background_white margin-vertical_small">
+    <div class="admin-item-go-back">
+      <a href="/administrator"><h2>Вернуться к каталогу</h2></a>
+    </div>
+    <div class="admin-item">
+      <div class="admin-item__mini-image-choice">
+        {{#each data.image_paths}}
+         <div id="{{../data.item_id}}-{{@index}}" onclick="switchBigImage(this.id)" class="admin-item__mini-image-choice__image">
+          <img src="/assets/pictures/shop/{{../data.item_id}}/{{this}}">
         </div>
         {{/each}}
-        {{#if image_paths}}
-        <div id="add-image" onclick="addImage()" class="item-editor__mini-image-choice__add">
+        {{#if data.image_paths}}
+        <div id="add-image" onclick="addImage()" class="admin-item__mini-image-choice__add">
           <img src="/assets/pictures/shop/add.png">
         </div>
         {{/if}}
       </div>
-      <div class="item-editor__big-image">
-        {{#if 0}}
-        <img id="big-image" src="/assets/pictures/shop/{{item_id}}/{{item_id}}-1.png">
-        {{else}}
-        <input id="add-image" type="file"/>
-        {{/if}}
+      <div class="admin-item__big-image">
+        <img id="big-image" src="/assets/pictures/shop/{{data.item_id}}/{{data.item_id}}-1.png">
       </div>
       <div class="item__description">
-        <h1 class="item__description__name">{{name}}</h1>
-        <h2 class="item__description__price">{{price}} ₽</h2>
-        <p class="item__description__detail">Размер: {{size_x}} x {{size_y}} cм</p>
+        <h1 class="item__description__name">{{data.name}}</h1>
+        <h2 class="item__description__price">{{data.price}} ₽</h2>
+        <p class="item__description__detail">Размер: {{data.size_x}} x {{data.size_y}} cм</p>
         </div>
       </div>
     </div>
@@ -39,7 +38,7 @@
   </section>
 </main>
 <script>
-  var first_image_id = $(".item-editor__mini-image-choice")[0].getElementsByClassName("item-editor__mini-image-choice__image")[0].id
+  var first_image_id = $(".admin-item__mini-image-choice")[0].getElementsByClassName("admin-item__mini-image-choice__image")[0].id
   localStorage.setItem('shop-item-big-image-id', first_image_id);
   $("#" + first_image_id)[0].style.borderStyle = "solid";
 

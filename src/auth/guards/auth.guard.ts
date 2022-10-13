@@ -19,7 +19,6 @@ export class AuthGuard implements CanActivate {
 
     await verifySession(this.verifyOptions)(req, res, (res: any) => {
       err = res
-      console.log(err)
     });
 
     if (res.headersSent) {

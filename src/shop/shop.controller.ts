@@ -1,26 +1,28 @@
 import { Body, Controller, Get, Param, Res, Render, Post, Redirect, UseInterceptors, NotFoundException, UseFilters } from '@nestjs/common';
 import { OrderDto } from './dtos/order.dto';
 import { ShopService } from './shop.service';
-import { join } from 'path';
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
-import { ShopItemDto } from './dtos/shop-item.dto';
-import { ShopItemsDto } from './dtos/shop-items.dto';
-import { LoadTimeInterceptor } from '../interceptors/load-time.interceptor'
+import { LoadTimeInterceptor } from '../common/interceptors/load-time.interceptor'
+import { CustomerLayoutDto, LayoutDto } from 'src/common/dtos/layout.dto';
 
+@UseInterceptors(LoadTimeInterceptor)
 @Controller()
 @ApiTags('shop')
 export class ShopController {
-  constructor(private readonly shopService: ShopService) {}
-  
+  constructor(private readonly shopService: ShopService) { }
+
   @ApiOperation({
     summary: 'Visit the shop page'
   })
-  @UseInterceptors(LoadTimeInterceptor)
   @Get(['/', 'shop'])
-  @Render(join(__dirname, '..', '..', 'views/shop'))
-  async getShopPage(): Promise<ShopItemsDto> {
+  @Render('shop')
+  async getShopPage(): Promise<CustomerLayoutDto> {
     var shop_items = await this.shopService.getShopItems();
-    return shop_items;
+    return {
+      title: 'Магазин | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
+      description: 'Авторские картины, скульптуры и батики мастерской Бакулиной Татьяны в её любимом городе — Петербурге.',
+      data: shop_items,
+    };
   }
 
   @ApiOperation({
@@ -36,9 +38,14 @@ export class ShopController {
     description: 'The shop item with {id} was not found'
   })
   @Get('shop/:id')
-  @Render(join(__dirname, '..', '..', 'views/shop_item'))
-  async getShopItemPage(@Param('id') id: number, @Res() res): Promise<ShopItemDto> {
-    return await this.shopService.getShopItem(id);
+  @Render('shop_item')
+  async getShopItemPage(@Param('id') id: number): Promise<CustomerLayoutDto> {
+    const shop_item = await this.shopService.getShopItem(id);
+    return {
+      title: shop_item.name + ' | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
+      description: 'Страница картины ' + shop_item.name + '.',
+      data: shop_item,
+    };
   }
 
   @ApiOperation({

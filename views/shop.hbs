@@ -1,21 +1,25 @@
-<!doctype html>
-<html lang="ru">
-  <head>
-    <title>Магазин | Мастерская Бакулиной Татьяны в Санкт-Петербурге</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">   
-    <meta name="description" content="Авторские картины, скульптуры и батики мастерской Бакулиной Татьяны в её любимом городе — Петербурге.">
-    <meta name="author" content="Ivan Somkin">
-    {{> head}}
-<script src="/javascript/jquery-3.6.0.js"></script>
-  </head>
-  <body class="background_1">
-    {{> header}}
-    {{> main_shop}}
-    <footer>
-      {{> footer_contacts}}
-      {{> footer_privacy}}
-    </footer>
-    {{> mobile_menu_toggle}}
-  </body>
-</html>
+<main class="background_1">
+  <section class="background_white margin-horizontal_small margin-vertical_small">
+    <div class="shop">
+      <div class="shop__title">
+        <h1 class="shop__title__text">МАГАЗИН МАСТЕРСКОЙ</h1>
+      </div>
+      <!--<div class="shop__filters">
+        <div class="shop__filters__title">
+          <p class="shop__filters__title__text">Фильтры</p>
+        </div>
+        <div class="shop__filters__container">
+
+        </div>
+      </div>-->
+      <div class="shop__gallery">
+        {{#each data.shop_items}}
+          {{> shop_gallery_item id=id name=name price=price}}
+        {{/each}}
+      </div>
+      <button onclick="scrollToTop()" class="shop__scroll-to-top-button">⮙</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="/javascript/scroll-to-top.js"></script>

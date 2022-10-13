@@ -7,6 +7,5 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     response.status(301).setHeader('Location', '/').send();
-    console.log('Hey')
   }
 }

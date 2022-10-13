@@ -1,25 +1,40 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { ConfigService } from '@nestjs/config';
-import { AppModule } from './app.module';
-import { join } from 'path';
-import { LoadTimeInterceptor } from './interceptors/load-time.interceptor';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-
 import supertokens from 'supertokens-node';
+import { join } from 'path';
+
+import { AppModule } from './app.module';
+import { LoadTimeInterceptor } from './common/interceptors/load-time.interceptor';
+import { HttpExceptionFilter } from './common/filters/app.filter';
+import { engine } from 'express-handlebars';
+
+
 import { SupertokensExceptionFilter } from './auth/filters/auth.filter';
-import { HttpExceptionFilter } from './filters/app.filter';
+
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const configService: ConfigService = app.get(ConfigService);
-  const hbs = require('hbs')
-  app.setViewEngine('hbs');
-
+  
   app.useStaticAssets(join(__dirname, '..', 'public'));
-  app.setBaseViewsDir(join(__dirname, '..', 'views'));
-  hbs.registerPartials(join(__dirname, '..', 'views/partials'));
 
+  app.engine('.hbs', engine({
+    extname: '.hbs',
+    defaultLayout: 'customer',
+    layoutsDir: 'views/layouts',
+    partialsDir: [
+      join(__dirname, '..', 'views/partials'),
+      join(__dirname, '..', 'views/partials/mains'),
+    ],
+    helpers: {
+      isTrueOrUndefined(value: boolean) {
+        return value == true || value == undefined;
+      },
+    },
+  }));
+  app.set('view engine', '.hbs');
 
   const config = new DocumentBuilder()
     .setTitle('Bakulina Tatiana Art Shop')
@@ -35,7 +50,6 @@ async function bootstrap() {
     credentials: true,
   });
 
-  app.useGlobalInterceptors(new LoadTimeInterceptor());
   app.useGlobalFilters(
     new SupertokensExceptionFilter(),
     new HttpExceptionFilter(),

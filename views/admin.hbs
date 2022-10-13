@@ -9,7 +9,7 @@
   <section>
     <h2 class="admin__subtitle">Товары</h2>
     <div id="shop-sortable" class="admin__shop">
-      {{#each shop_items}}
+      {{#each data.shop_items}}
         {{> admin_shop_gallery_item id=id name=name price=price}}
       {{/each}}
     </div>

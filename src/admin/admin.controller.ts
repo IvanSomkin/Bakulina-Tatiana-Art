@@ -8,6 +8,8 @@ import { ShopService } from '../shop/shop.service';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { CreateShopItemResponseDto } from './dtos/create-shop-item-response.dto';
 import { Response } from 'express';
+import { AdminLayoutDto } from 'src/common/dtos/layout.dto';
+import { appendFile } from 'fs';
 
 @Controller('administrator')
 @ApiTags('administrator')
@@ -21,23 +23,29 @@ export class AdminController {
     summary: 'Visit the admin login page'
   })
   @Get('login')
-  @Render(join(__dirname, '..', '..', 'views/administrator_login'))
-  getAdminLoginPage() {
-    return {};
+  getAdminLoginPage(@Res() res: Response): void {
+    return res.render('admin_login', {
+      layout: 'admin',
+      title: 'Вход администратора | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
+      description: 'Страница входа в панель администратора.',
+      data: '',
+    });
   }
 
   @ApiOperation({
     summary: 'Visit the admin page'
   })
   @ApiCookieAuth()
-  @Get()
   @UseGuards(new AuthGuard())
-  @Render(join(__dirname, '..', '..', 'views/administrator'))
-  async getAdminPage() {
-    var shop_items_dto = await this.shopService.getShopItems();
-    return {
-      shop_items: shop_items_dto.shop_items,
-    };
+  @Get()
+  async getAdminPage(@Res() res: Response): Promise<void> {
+    var shop_items = await this.shopService.getShopItems();
+    return res.render('admin', {
+      layout: 'admin',
+      title: 'Администратор | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
+      description: 'Страница панели администратора.',
+      data: shop_items,
+    });
   }
 
   @ApiOperation({
@@ -46,10 +54,15 @@ export class AdminController {
   @ApiCookieAuth()
   @UseGuards(new AuthGuard())
   @Get('shop/:id')
-  @Render(join(__dirname, '..', '..', 'views/administrator_shop_item'))
-  async getAdminShopItemPage(@Param('id') id: number) {
+  async getAdminShopItemPage(@Param('id') id: number, @Res() res: Response) {
     var shop_item_dto = await this.shopService.getShopItem(id);
-    return shop_item_dto;
+
+    return res.render('admin_shop_item', {
+      layout: 'admin',
+      title: 'Редактирование (' + shop_item_dto.name + ') | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
+      description: 'Страница редактирования работы ' + shop_item_dto.name + '.',
+      data: shop_item_dto,
+    });
   }
 
   @ApiOperation({

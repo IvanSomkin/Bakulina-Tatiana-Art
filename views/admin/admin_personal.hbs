@@ -17,14 +17,14 @@
               <input class="sign-up-admin-form__input_text" id="signed_email" type="text" name="signed_email" value=""
                 required>
               <h2 class="sign-up-admin-form__label">Введите пароль:</h3>
-                <input class="sign-up-admin-form__input_text" id="signed_password" type="text" name="signed_password"
-                  value="" required>
+                <input class="sign-up-admin-form__input_text" id="signed_password" type="password"
+                  name="signed_password" value="" required>
                 <h2 class="sign-up-admin-form__label">Введите отображаемое имя</h3>
                   <input class="sign-up-admin-form__input_text" id="signed_name" type="text" name="signed_name" value=""
                     required>
                   <p id="sign-up-admin-form__error"></p>
                   <p id="sign-up-admin-form__success"></p>
-                  <input type="submit" value="Создать администратора" class="sign-up-admin-button"
+                  <input class="sign-up-admin-form__submit-button" type="submit" value="Создать администратора"
                     id="signup-admin-button" />
           </form>
       </div>
@@ -32,7 +32,8 @@
         <h1 class="delete-admin-form-title">Удалить администратора</h3>
           <form id="delete-admin-form">
             <h2 class="delete-admin-form__label">Введите удаляемый uuid:</h3>
-              <input class="delete-admin-form__input_text" name="deleted_uuid" type="text" name="deleted_uuid" value="">
+              <input class="delete-admin-form__input_text" id="deleted_uuid" name="deleted_uuid" type="text"
+                name="deleted_uuid" value="">
               <p id="delete-admin-form__error"></p>
               <p id="delete-admin-form__success"></p>
               <input type="submit" value="Удалить администратора" class="delete-admin-form__submit-button"

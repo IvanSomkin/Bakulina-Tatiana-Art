@@ -62,29 +62,33 @@ export class AdminService {
 
     let form_data = signUpAdminNameDto.form_data
 
-    let creator = await this.adminRepository.findOne({
+    let signer = await this.adminRepository.findOne({
       where: {
-        uuid: signUpAdminNameDto.creator_uuid
+        uuid: signUpAdminNameDto.signer_uuid
       }
     })
 
+    console.log(form_data)
+
     let st_result = await signUp(
-      form_data.created_email,
-      form_data.created_password,
+      form_data.signed_email,
+      form_data.signed_password,
     )
 
     if (st_result.status == "OK") {
       let insert_result = await this.adminRepository.insert({
         uuid: st_result.user.id,
-        name: form_data.created_name,
+        name: form_data.signed_name,
       })
 
       console.log(insert_result.raw)
 
       return {
-        deleter_name: creator.name,
-        deleted_name: form_data.created_email,
+        deleter_name: signer.name,
+        deleted_name: form_data.signed_email,
       }
+    } else {
+      return undefined
     }
   }
 

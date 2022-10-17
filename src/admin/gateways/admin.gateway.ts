@@ -29,14 +29,22 @@ export class AdminGateway implements
 
   @SubscribeMessage('signUpAdmin')
   async handleSignUpAdmin(client: Socket, signUpAdminNameDto: SignUpAdminNameDto): Promise<void> {
-    const creator_created_names = await this.adminService.signUpAdmin(signUpAdminNameDto)
-    this.server.emit('renameSuccess', creator_created_names)
+    const signer_signed_names = await this.adminService.signUpAdmin(signUpAdminNameDto)
+    if (signer_signed_names != undefined) {
+      this.server.emit('signUpSuccess', signer_signed_names)
+    } else {
+      this.server.emit('signUpError')
+    }
   }
 
   @SubscribeMessage('deleteAdmin')
   async handleDeleteAdmin(client: Socket, deleteAdminDto: DeleteAdminDto): Promise<void> {
     const deleter_deleted_names = await this.adminService.deleteAdmin(deleteAdminDto)
-    this.server.emit('renameSuccess', deleter_deleted_names)
+    if (deleter_deleted_names != undefined) {
+      this.server.emit('deleteSuccess', deleter_deleted_names)
+    } else {
+      this.server.emit('deleteError', deleter_deleted_names)
+    }
   }
 
   afterInit(server: Server) {

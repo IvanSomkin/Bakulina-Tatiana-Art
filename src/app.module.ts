@@ -1,13 +1,14 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
 import { ShopModule } from './shop/shop.module'
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { DatabaseModule } from './database/database.module';
-import { PortfolioModule } from './portfolio/portfolio.module';
-import { ContactsModule } from './contacts/contacts.module';
-import { AdminModule } from './admin/admin.module';
-import { AuthModule } from './auth/auth.module';
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { DatabaseModule } from './database/database.module'
+import { PortfolioModule } from './portfolio/portfolio.module'
+import { ContactsModule } from './contacts/contacts.module'
+import { AdminModule } from './admin/admin.module'
+import { AuthModule } from './auth/auth.module'
+import { EventsModule } from './events/events.module'
 
 @Module({
   imports: [
@@ -30,9 +31,10 @@ import { AuthModule } from './auth/auth.module';
     PortfolioModule,
     ContactsModule,
     AdminModule,
-    AuthModule
+    AuthModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

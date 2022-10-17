@@ -8,7 +8,7 @@ export enum ParameterType {
   TECHNIQUE = "Technique",
 }
 
-@Entity({ schema: "shop" })
+@Entity({ schema: "public", name: "parameter" })
 export class Parameter {
   @ApiProperty()
   @PrimaryGeneratedColumn({ primaryKeyConstraintName: "pk_parameter_id" })

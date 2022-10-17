@@ -1,0 +1,6 @@
+{
+  "editor.formatOnSave": true,
+  "css.format.spaceAroundSelectorSeparator": true,
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative"
+}

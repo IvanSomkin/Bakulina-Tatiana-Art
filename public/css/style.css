@@ -1,19 +1,19 @@
 @font-face {
-  font-family: 'EB Garamond'; 
+  font-family: 'EB Garamond';
   src: url('../assets/fonts/EBGaramond/EBGaramond-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'EB Garamond'; 
+  font-family: 'EB Garamond';
   src: url('../assets/fonts/EBGaramond/EBGaramond-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'EB Garamond'; 
+  font-family: 'EB Garamond';
   src: url('../assets/fonts/EBGaramond/EBGaramond-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
@@ -21,11 +21,11 @@
 
 
 @font-face {
-  font-family: 'Droid Serif'; 
+  font-family: 'Droid Serif';
   src: url('../assets/fonts/DroidSerif/DroidSerif-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-} 
+}
 
 
 
@@ -162,7 +162,7 @@ a#desktop-header__title {
   align-items: center;
 }
 
-#desktop-header__menu a{
+#desktop-header__menu a {
   font-family: 'EB Garamond', serif;
   font-weight: normal;
   font-size: 20px;
@@ -449,7 +449,7 @@ a.footer-section-item {
 .item {
   display: flex;
   flex-direction: row;
-  min-height: 110vh;
+  min-height: 105vh;
   width: 100%;
 }
 
@@ -495,7 +495,7 @@ a.footer-section-item {
 }
 
 .item__big-image > img {
-  max-height: 100vh;
+  max-height: 90vh;
   max-width: 100%;
   box-sizing: border-box;
 }
@@ -516,6 +516,7 @@ a.footer-section-item {
   font-size: 42px;
   color: black;
   margin: 0px;
+  padding-right: 20px;
 }
 
 .item__description__price {
@@ -534,7 +535,7 @@ a.footer-section-item {
 .item-order {
   width: 100%;
   height: 800px;
-  border-top: 1px solid rgb(0,0,0,0.2);
+  border-top: 1px solid rgb(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -704,6 +705,8 @@ input {
 
 
 
+
+
 /* Order form */
 
 .order-form__title {
@@ -721,7 +724,7 @@ input {
   padding: 10px;
 
   font-family: Georgia, serif;
-  font-size: 18px; 
+  font-size: 18px;
 }
 
 .order-form__checkbox {
@@ -797,7 +800,7 @@ input {
   padding: 10px;
 
   font-family: Georgia, serif;
-  font-size: 18px; 
+  font-size: 18px;
 }
 
 .login-form__submit-button {
@@ -831,6 +834,12 @@ input {
   margin-top: 20px;
   text-align: center;
 }
+
+
+
+
+
+
 
 
 
@@ -956,13 +965,25 @@ input {
 
 /* Admin page */
 
-.admin__user {
+.admin__header {
   margin-top: 40px;
   margin-bottom: 10px;
 }
 
-.admin__user__signout {
+.admin__header__go-to-admin:hover {
+  text-decoration: underline;
+}
+
+.admin__header__name:hover {
+  text-decoration: underline;
+}
+
+.admin__header__signout {
   cursor: pointer;
+}
+
+.admin__header__signout:hover {
+  text-decoration: underline;
 }
 
 .admin__shop {
@@ -1021,6 +1042,221 @@ input {
   margin-bottom: 40px;
   text-align: center;
   color: rgb(96, 94, 94);
+}
+
+
+
+
+
+/* Admin personal page */
+
+.admin-personal__title {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Rename admin form */
+
+.rename-admin-form-title {
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.rename-admin-form__label {
+  margin-bottom: 15px;
+}
+
+.rename-admin-form__input_text {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+.rename-admin-form__checkbox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 38px;
+}
+
+.rename-admin-form__checkbox__button {
+  width: 25px;
+  height: 25px;
+  appearance: auto;
+}
+
+.rename-admin-form__checkbox__label {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 24px;
+  color: black;
+  margin: 0px;
+  margin-left: 10px;
+}
+
+.rename-admin-form__submit-button {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  margin-top: 38px;
+  margin-bottom: 60px;
+  cursor: pointer;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+.rename-admin-form__submit-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.rename-admin-form__submit-button[disabled] {
+  color: white;
+  background-color: gray;
+  border: 2px solid gray;
+}
+
+/* Sign up admin form */
+
+.sign-up-admin-form-title {
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.sign-up-admin-form__label {
+  margin-bottom: 15px;
+}
+
+.sign-up-admin-form__input_text {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+.sign-up-admin-form__checkbox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 38px;
+}
+
+.sign-up-admin-form__checkbox__button {
+  width: 25px;
+  height: 25px;
+  appearance: auto;
+}
+
+.sign-up-admin-form__checkbox__label {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 24px;
+  color: black;
+  margin: 0px;
+  margin-left: 10px;
+}
+
+.sign-up-admin-form__submit-button {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  cursor: pointer;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+.sign-up-admin-form__submit-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.sign-up-admin-form__submit-button[disabled] {
+  color: white;
+  background-color: gray;
+  border: 2px solid gray;
+}
+
+/* Sign up admin form */
+
+.delete-admin-form-title {
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.delete-admin-form__label {
+  margin-bottom: 15px;
+}
+
+.delete-admin-form__input_text {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+.delete-admin-form__checkbox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 38px;
+}
+
+.delete-admin-form__checkbox__button {
+  width: 25px;
+  height: 25px;
+  appearance: auto;
+}
+
+.delete-admin-form__checkbox__label {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 24px;
+  color: black;
+  margin: 0px;
+  margin-left: 10px;
+}
+
+.delete-admin-form__submit-button {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  margin-top: 60px;
+  margin-bottom: 120px;
+  cursor: pointer;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+.delete-admin-form__submit-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.delete-admin-form__submit-button[disabled] {
+  color: white;
+  background-color: gray;
+  border: 2px solid gray;
 }
 
 
@@ -1274,5 +1510,5 @@ input {
   p.footer-section-item {
     font-size: 10px;
   }
-  
+
 }

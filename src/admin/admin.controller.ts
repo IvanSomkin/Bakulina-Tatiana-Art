@@ -1,19 +1,18 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Render, Res, UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
-import { AdminService } from './admin.service';
-import { join } from 'path';
-import { ApiTags, ApiOperation, ApiResponse, ApiCookieAuth } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Post, Put, Res, Session, UseGuards } from '@nestjs/common'
+import { AdminService } from './admin.service'
+import { ApiOperation, ApiResponse, ApiCookieAuth } from '@nestjs/swagger'
 
-import { ChangeShopItemDto } from '../admin/dtos/change-shop-item.dto';
-import { ShopService } from '../shop/shop.service';
-import { AuthGuard } from '../auth/guards/auth.guard';
-import { CreateShopItemResponseDto } from './dtos/create-shop-item-response.dto';
-import { Response } from 'express';
-import { AdminLayoutDto } from 'src/common/dtos/layout.dto';
-import { appendFile } from 'fs';
+import { ChangeShopItemDto } from '../admin/dtos/change-shop-item.dto'
+import { ShopService } from '../shop/shop.service'
+import { AuthGuard } from '../auth/guards/auth.guard'
+import { CreateShopItemResponseDto } from './dtos/create-shop-item-response.dto'
+import { Response } from 'express'
+import { SessionContainer } from 'supertokens-node/recipe/session'
+import { DeleteAdminDto } from './dtos/delete-admin.dto'
+import { SignUpAdminNameDto } from './dtos/sign-up-admin.dto'
 
-@Controller('administrator')
-@ApiTags('administrator')
-export class AdminController {
+@Controller()
+export class AdminPageController {
   constructor(
     private readonly adminService: AdminService,
     private readonly shopService: ShopService,
@@ -22,63 +21,99 @@ export class AdminController {
   @ApiOperation({
     summary: 'Visit the admin login page'
   })
-  @Get('login')
-  getAdminLoginPage(@Res() res: Response): void {
+  @Get('administrator/login')
+  getLoginPage(@Res() res: Response): void {
     return res.render('admin_login', {
       layout: 'admin',
       title: 'Вход администратора | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
       description: 'Страница входа в панель администратора.',
       data: '',
-    });
+    })
   }
 
   @ApiOperation({
     summary: 'Visit the admin page'
   })
   @ApiCookieAuth()
-  @UseGuards(new AuthGuard())
-  @Get()
-  async getAdminPage(@Res() res: Response): Promise<void> {
-    var shop_items = await this.shopService.getShopItems();
+  @UseGuards(AuthGuard)
+  @Get('administrator')
+  async getMainPage(@Session() session: SessionContainer, @Res() res: Response): Promise<void> {
+    let shop_items = await this.shopService.getShopItemsOnlyPreview()
     return res.render('admin', {
       layout: 'admin',
       title: 'Администратор | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
       description: 'Страница панели администратора.',
       data: shop_items,
-    });
+      admin_name: await this.adminService.getAdminName(session.getUserId()),
+    })
+  }
+
+  @ApiOperation({
+    summary: 'Visit the admin user page'
+  })
+  @ApiCookieAuth()
+  @UseGuards(AuthGuard)
+  @Get('administrator/personal')
+  async getPersonalPage(@Session() session: SessionContainer, @Res() res: Response): Promise<void> {
+    return res.render('admin_personal', {
+      layout: 'admin',
+      title: 'Администратор | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
+      description: 'Страница личного кабинета администратора.',
+      admin_name: await this.adminService.getAdminName(session.getUserId()),
+      admin_uuid: session.getUserId(),
+    })
   }
 
   @ApiOperation({
     summary: 'Visit the shop item editor page'
   })
   @ApiCookieAuth()
-  @UseGuards(new AuthGuard())
-  @Get('shop/:id')
-  async getAdminShopItemPage(@Param('id') id: number, @Res() res: Response) {
-    var shop_item_dto = await this.shopService.getShopItem(id);
+  @UseGuards(AuthGuard)
+  @Get('administrator/shop/:id')
+  async getShopItemPage(@Param('id') id: number, @Res() res: Response) {
+    let shop_item_dto = await this.shopService.getShopItem(id)
 
     return res.render('admin_shop_item', {
       layout: 'admin',
       title: 'Редактирование (' + shop_item_dto.name + ') | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
       description: 'Страница редактирования работы ' + shop_item_dto.name + '.',
       data: shop_item_dto,
-    });
+    })
   }
+}
+
+
+
+@Controller()
+export class AdminPersonalController {
+  constructor(
+    private readonly adminService: AdminService,
+  ) { }
+}
+
+
+
+@Controller()
+export class AdminShopItemController {
+  constructor(
+    private readonly adminService: AdminService,
+    private readonly shopService: ShopService,
+  ) { }
 
   @ApiOperation({
-    summary: 'Add new shop item'
+    summary: 'Create new shop item'
   })
   @ApiResponse({
     status: 200,
     description: 'The new shop item has been added'
   })
   @ApiCookieAuth()
-  @UseGuards(new AuthGuard())
-  @Post('shop/item')
+  @UseGuards(AuthGuard)
+  @Post('administrator/shop/new')
   async createShopItem(): Promise<CreateShopItemResponseDto> {
-    const item_id = await this.adminService.createShopItem();
+    const item_id = await this.adminService.createShopItem()
     return {
-      created_shop_item_id: item_id,
+      created_item_id: item_id,
     }
   }
 
@@ -90,11 +125,11 @@ export class AdminController {
     description: 'The shop item with needed id has been deleted'
   })
   @ApiCookieAuth()
-  @UseGuards(new AuthGuard())
+  @UseGuards(AuthGuard)
   @Delete('shop/:id')
   async removeShopItem(@Param('id') id: number, @Res() res: Response) {
-    await this.adminService.removeShopItem({ shop_item_id: id });
-    return res.redirect('/administrator');
+    await this.adminService.removeShopItem({ shop_item_id: id })
+    return res.redirect('/administrator')
   }
 
   @ApiOperation({
@@ -105,9 +140,9 @@ export class AdminController {
     description: 'The shop item information has been updated'
   })
   @ApiCookieAuth()
-  @UseGuards(new AuthGuard())
+  @UseGuards(AuthGuard)
   @Put('shop/:id')
   async changeShopItem(@Body() changeShopItem: ChangeShopItemDto) {
-    await this.adminService.changeShopItem(changeShopItem);
+    await this.adminService.changeShopItem(changeShopItem)
   }
 }

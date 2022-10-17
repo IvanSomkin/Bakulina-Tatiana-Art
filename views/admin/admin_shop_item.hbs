@@ -1,12 +1,11 @@
 <main>
+  {{> admin_header_go_to_admin}}
   <section id="admin-item-section" class="background_white margin-vertical_small">
-    <div class="admin-item-go-back">
-      <a href="/administrator"><h2>Вернуться к каталогу</h2></a>
-    </div>
     <div class="admin-item">
       <div class="admin-item__mini-image-choice">
         {{#each data.image_paths}}
-         <div id="{{../data.item_id}}-{{@index}}" onclick="switchBigImage(this.id)" class="admin-item__mini-image-choice__image">
+        <div id="{{../data.item_id}}-{{@index}}" onclick="switchBigImage(this.id)"
+          class="admin-item__mini-image-choice__image">
           <img src="/assets/pictures/shop/{{../data.item_id}}/{{this}}">
         </div>
         {{/each}}
@@ -23,8 +22,8 @@
         <h1 class="item__description__name">{{data.name}}</h1>
         <h2 class="item__description__price">{{data.price}} ₽</h2>
         <p class="item__description__detail">Размер: {{data.size_x}} x {{data.size_y}} cм</p>
-        </div>
       </div>
+    </div>
     </div>
     <!--
     <div class="item-error">
@@ -38,21 +37,20 @@
   </section>
 </main>
 <script>
-  var first_image_id = $(".admin-item__mini-image-choice")[0].getElementsByClassName("admin-item__mini-image-choice__image")[0].id
-  localStorage.setItem('shop-item-big-image-id', first_image_id);
-  $("#" + first_image_id)[0].style.borderStyle = "solid";
+  let first_image_id = $(".admin-item__mini-image-choice")[0].getElementsByClassName("admin-item__mini-image-choice__image")[0].id
+  localStorage.setItem('shop-item-big-image-id', first_image_id)
+  $("#" + first_image_id)[0].style.borderStyle = "solid"
 
-  function switchBigImage(image_id)
-  {
-    var prev_image_id = localStorage.getItem('shop-item-big-image-id');
-    $("#big-image")[0].src = $("#" + image_id)[0].getElementsByTagName("img")[0].src;
-    $("#" + prev_image_id)[0].style.borderStyle = "double";
-    $("#" + image_id)[0].style.borderStyle = "solid";
-    localStorage.setItem('shop-item-big-image-id', image_id);
+  function switchBigImage(image_id) {
+    let prev_image_id = localStorage.getItem('shop-item-big-image-id')
+    $("#big-image")[0].src = $("#" + image_id)[0].getElementsByTagName("img")[0].src
+    $("#" + prev_image_id)[0].style.borderStyle = "double"
+    $("#" + image_id)[0].style.borderStyle = "solid"
+    localStorage.setItem('shop-item-big-image-id', image_id)
   }
 </script>
 <script>
-  function addImage(){
+  function addImage() {
 
   }
 </script>

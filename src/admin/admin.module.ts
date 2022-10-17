@@ -1,18 +1,38 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ShopService } from '../shop/shop.service';
-import { ShopItem } from '../shop/entities/shop-item.entity';
-import { AdminController } from './admin.controller';
-import { AdminService } from './admin.service';
-import { Admin } from './entities/admin.entity';
+import { MiddlewareConsumer, Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { ShopService } from '../shop/shop.service'
+import { ShopItemEntity } from '../shop/entities/shop-item.entity'
+import { AdminPageController, AdminPersonalController, AdminShopItemController } from './admin.controller'
+import { AdminService } from './admin.service'
+import { Admin } from './entities/admin.entity'
+import { AuthMiddleware } from '../auth/middleware/auth.middleware'
+import { ShopItemImageEntity } from '../shop/entities/shop-item-image.entity'
+import { ImageEntity } from '../common/entities/image.entity'
+import { AuthModule } from '../auth/auth.module'
+import { AdminGateway } from './gateways/admin.gateway'
+
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Admin, ShopItem]),
+    AuthModule,
+    TypeOrmModule.forFeature([
+      ShopItemEntity,
+      ShopItemImageEntity,
+      ImageEntity,
+      Admin
+    ]),
   ],
-  controllers: [AdminController],
+  controllers: [
+    AdminPageController,
+    AdminPersonalController,
+    AdminShopItemController],
   providers: [
     AdminService,
     ShopService,
+    AdminGateway,
   ],
 })
-export class AdminModule { }
+export class AdminModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware).forRoutes('*')
+  }
+}

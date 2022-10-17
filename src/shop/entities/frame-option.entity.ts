@@ -1,8 +1,8 @@
 import { Entity, PrimaryColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { Parameter } from './parameter.entity';
-import { ShopItem } from './shop-item.entity';
+import { ShopItemEntity } from './shop-item.entity';
 
-@Entity({ schema: "shop" })
+@Entity({ schema: "public", name: "frame_option" })
 export class FrameOption {
   /*
   @PrimaryColumn()

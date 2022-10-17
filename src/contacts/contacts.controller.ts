@@ -1,7 +1,6 @@
 import { Controller, Get, Render, UseInterceptors } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
-import { join } from 'path'
-import { LoadTimeInterceptor } from 'src/common/interceptors/load-time.interceptor';
+import { LoadTimeInterceptor } from '../common/interceptors/load-time.interceptor';
 
 @Controller()
 @ApiTags('contacts')

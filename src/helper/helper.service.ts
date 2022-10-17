@@ -1,17 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class HelperService {
-  
-  public dbHost: string;
-  public dbPort: number;
-  public dbUsername: string;
-  public dbPassword: string;
-  public dbName: string;
+
+  public dbHost: string
+  public dbPort: number
+  public dbUsername: string
+  public dbPassword: string
+  public dbName: string
 
   constructor() {
-    var parse = require('pg-connection-string').parse
-    var config = parse(process.env.DATABASE_URL)
+    let parse = require('pg-connection-string').parse
+    let config = parse(process.env.DATABASE_URL)
     this.dbHost = config.host
     this.dbPort = config.port
     this.dbUsername = config.user
@@ -20,19 +20,19 @@ export class HelperService {
   }
 
   getDbHost(): string {
-    return this.dbHost;
+    return this.dbHost
   }
 
   getDbPort(): number {
-    return this.dbPort;
+    return this.dbPort
   }
   getDbUsername(): string {
-    return this.dbUsername;
+    return this.dbUsername
   }
   getDbPassword(): string {
-    return this.dbPassword;
+    return this.dbPassword
   }
   getDbName(): string {
-    return this.dbName;
+    return this.dbName
   }
 }

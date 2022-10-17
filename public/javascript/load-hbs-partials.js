@@ -1,9 +1,9 @@
-var hbs = require('hbs');
-var fs = require('fs');
+import { registerPartial } from 'express-handlebars';
+import { readdirSync, readFileSync } from 'fs';
 
 var partialsDir = __dirname + '/../views/partials';
 
-var filenames = fs.readdirSync(partialsDir);
+var filenames = readdirSync(partialsDir);
 
 filenames.forEach(function (filename) {
   var matches = /^([^.]+).hbs$/.exec(filename);
@@ -11,6 +11,6 @@ filenames.forEach(function (filename) {
     return;
   }
   var name = matches[1];
-  var template = fs.readFileSync(partialsDir + '/' + filename, 'utf8');
-  hbs.registerPartial(name, template);
+  var template = readFileSync(partialsDir + '/' + filename, 'utf8');
+  registerPartial(name, template);
 });

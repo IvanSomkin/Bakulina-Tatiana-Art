@@ -1,7 +1,9 @@
 <main>
   <section>
-    <p class="admin__user"><a>Бакулина Татьяна</a> |
-    <a class="admin__user__signout" onclick="signout()">Выйти</a></p>
+    <p class="admin__header">
+      <a class="admin__header__name" href="/administrator/personal">{{admin_name}}</a> |
+      <a class="admin__header__signout" onclick="signout()">Выйти</a>
+    </p>
   </section>
   <section>
     <h1 class="admin__title">Редактор магазина</h1>
@@ -10,27 +12,27 @@
     <h2 class="admin__subtitle">Товары</h2>
     <div id="shop-sortable" class="admin__shop">
       {{#each data.shop_items}}
-        {{> admin_shop_gallery_item id=id name=name price=price}}
+      {{> admin_shop_gallery_item id=id name=name price=price}}
       {{/each}}
     </div>
   </section>
   <script src="/javascript/admin-shop-edit.js"></script>
 </main>
 <script>
-  function signoutAjax(){
-    return new Promise(function(resolve, reject){
+  function signoutAjax() {
+    return new Promise(function (resolve, reject) {
       $.ajax({
         url: '/auth/signout',
         type: 'POST',
         contentType: 'application/json',
-        success: function(response) {
+        success: function (response) {
           location.href = "/administrator/login"
         }
-      });
-    });
+      })
+    })
   }
 
-  async function signout(){
-    await signoutAjax();
+  async function signout() {
+    await signoutAjax()
   }
 </script>

@@ -1,7 +1,7 @@
 import { Controller, Get, Render } from '@nestjs/common';
 import { PortfolioService } from './portfolio.service';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
-import { CustomerLayoutDto } from 'src/common/dtos/layout.dto';
+import { CustomerLayoutDto } from '../common/dtos/layout.dto';
 
 @Controller()
 @ApiTags('portfolio')

@@ -1,12 +1,14 @@
-import { Body, Controller, Post, UseGuards } from "@nestjs/common";
-import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { SignupAdminDto } from "../auth/dtos/signup-admin.dto";
-import { deleteUser } from "supertokens-node";
-import { SigninAdminDto } from "./dtos/signin-admin.dto";
-import { AuthGuard } from "./guards/auth.guard";
+import { Body, Controller, Injectable, Post, Put, Req, Res, UseGuards } from "@nestjs/common"
+import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
+import { Request, Response } from "express"
+import { refreshSession } from "supertokens-node/recipe/session"
+import { SignInAdminDto } from "./dtos/signin-admin.dto"
+import { SignUpAdminDto } from "./dtos/signin-admin.dto copy"
+import { AuthGuard } from "./guards/auth.guard"
 
-@Controller('auth')
 @ApiTags('auth')
+@Injectable()
+@Controller('auth')
 export class AuthController {
   constructor() { }
 
@@ -18,32 +20,46 @@ export class AuthController {
     description: 'The user has logged in as admin'
   })
   @Post('signin')
-  signinAsAdmin(@Body() signinAdminDto: SigninAdminDto) {
-    return {};
+  signinAsAdmin(@Body() SigninAdminDto: SignInAdminDto) {
+    return {}
   }
 
-  /*
-  @Post('auth/signup')
-  signupAsAdmin(@Body() signupAdminDto: SignupAdminDto) {
-    return {};
+  @ApiOperation({
+    summary: 'Sign up as admin'
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'The admin user has been created'
+  })
+  @UseGuards(AuthGuard)
+  @Post('signup')
+  signupAsAdmin(@Body() signupAdminDto: SignUpAdminDto) {
+    return {}
   }
-  */
 
   @ApiOperation({
     summary: 'Sign out as admin'
   })
   @ApiCookieAuth()
-  @UseGuards(new AuthGuard())
+  @UseGuards(AuthGuard)
   @Post('signout')
-  signoutAsAdmin() {
-    return {};
+  signoutAsAdmin(): void { }
+
+  @ApiOperation({
+    summary: 'Sign out as admin'
+  })
+  @ApiCookieAuth()
+  @UseGuards(AuthGuard)
+  @Post('session/refresh')
+  async refreshTokenAsAdmin(@Req() req: Request, @Res() res: Response) {
+    return await refreshSession(req, res)
   }
 
   /*
   @ApiOperation({
     summary: 'Delete admin'
   })
-  @UseGuards(new AuthGuard())
+  @UseGuards(new AuthGuard(this))
   @Post('auth/delete')
   removeAdmin() {
     return deleteUser("a28008f7-8de2-47b2-9090-5d895819dd42");

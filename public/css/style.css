@@ -1330,7 +1330,7 @@ input {
 }
 
 .admin-item__big-image > img {
-  max-height: 100vh;
+  max-height: 90vh;
   max-width: 100%;
   box-sizing: border-box;
 }

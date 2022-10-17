@@ -48,11 +48,11 @@ $('#sign-up-admin-form').on("submit", function (e) {
 })
 
 socket.on('signUpSuccess', (signUpSuccess) => {
-  toastr.success("Администратор '" + signUpSuccess.creator_name +
-    "' успешно создал администратора с именем '" + signUpSuccess.created_name + "'")
+  toastr.success("Администратор '" + signUpSuccess.signer_name +
+    "' успешно создал администратора с именем '" + signUpSuccess.signed_name)
 })
 
-socket.on('signUpError', (signUpSuccess) => {
+socket.on('signUpError', () => {
   toastr.error("Возникла проблема при регистрации администратора")
 })
 
@@ -81,6 +81,6 @@ socket.on('deleteSuccess', (deleteSuccess) => {
     "' успешно удалил администратора с именем '" + deleteSuccess.deleted_name + "'")
 })
 
-socket.on('deleteError', (deleteError) => {
+socket.on('deleteError', () => {
   toastr.error("Возникла проблема при удалении администратора")
 })

@@ -81,7 +81,7 @@ export class AdminService {
 
       return {
         signer_name: signer.name,
-        signed_name: form_data.signed_email,
+        signed_name: form_data.signed_name,
       }
     } else {
       return undefined
@@ -104,11 +104,13 @@ export class AdminService {
       }
     })
 
+
+    let st_result = await deleteUser(form_data.deleted_uuid)
+
     if (deleted == null) {
       return undefined
     }
 
-    let st_result = await deleteUser(deleted.uuid)
     if (st_result.status == "OK") {
       let delete_result = await this.adminRepository.delete({
         uuid: deleted.uuid

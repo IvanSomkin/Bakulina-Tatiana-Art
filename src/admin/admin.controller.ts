@@ -8,8 +8,6 @@ import { AuthGuard } from '../auth/guards/auth.guard'
 import { CreateShopItemResponseDto } from './dtos/create-shop-item-response.dto'
 import { Response } from 'express'
 import { SessionContainer } from 'supertokens-node/recipe/session'
-import { DeleteAdminDto } from './dtos/delete-admin.dto'
-import { SignUpAdminNameDto } from './dtos/sign-up-admin.dto'
 
 @Controller()
 export class AdminPageController {
@@ -70,7 +68,7 @@ export class AdminPageController {
   @ApiCookieAuth()
   @UseGuards(AuthGuard)
   @Get('administrator/shop/:id')
-  async getShopItemPage(@Param('id') id: number, @Res() res: Response) {
+  async getShopItemPage(@Session() session: SessionContainer, @Param('id') id: number, @Res() res: Response) {
     let shop_item_dto = await this.shopService.getShopItem(id)
 
     return res.render('admin_shop_item', {
@@ -78,6 +76,7 @@ export class AdminPageController {
       title: 'Редактирование (' + shop_item_dto.name + ') | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
       description: 'Страница редактирования работы ' + shop_item_dto.name + '.',
       data: shop_item_dto,
+      admin_name: await this.adminService.getAdminName(session.getUserId()),
     })
   }
 }
@@ -92,12 +91,11 @@ export class AdminPersonalController {
 }
 
 
-
+/*
 @Controller()
 export class AdminShopItemController {
   constructor(
     private readonly adminService: AdminService,
-    private readonly shopService: ShopService,
   ) { }
 
   @ApiOperation({
@@ -146,3 +144,4 @@ export class AdminShopItemController {
     await this.adminService.changeShopItem(changeShopItem)
   }
 }
+*/

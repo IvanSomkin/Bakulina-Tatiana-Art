@@ -4,19 +4,19 @@
     <div class="admin-item">
       <div class="admin-item__mini-image-choice">
         {{#each data.image_paths}}
-        <div id="{{../data.item_id}}-{{@index}}" onclick="switchBigImage(this.id)"
+        <div id="{{../data.id}}-{{@index}}" onclick="switchBigImage(this.id)"
           class="admin-item__mini-image-choice__image">
-          <img src="/assets/pictures/shop/{{../data.item_id}}/{{this}}">
+          <img src="/assets/pictures/shop/{{this}}">
         </div>
         {{/each}}
-        {{#if data.image_paths}}
+        <!--{{#if data.image_paths}}
         <div id="add-image" onclick="addImage()" class="admin-item__mini-image-choice__add">
           <img src="/assets/pictures/shop/add.png">
         </div>
-        {{/if}}
+        {{/if}}-->
       </div>
       <div class="admin-item__big-image">
-        <img id="big-image" src="/assets/pictures/shop/{{data.item_id}}/{{data.item_id}}-1.png">
+        <img id="big-image" src="/assets/pictures/shop/{{data.id}}/{{data.id}}-1.png">
       </div>
       <div class="item__description">
         <h1 class="item__description__name">{{data.name}}</h1>

@@ -65,10 +65,8 @@ export class AdminService {
     let signer = await this.adminRepository.findOne({
       where: {
         uuid: signUpAdminNameDto.signer_uuid
-      }
+      },
     })
-
-    console.log(form_data)
 
     let st_result = await signUp(
       form_data.signed_email,
@@ -81,11 +79,9 @@ export class AdminService {
         name: form_data.signed_name,
       })
 
-      console.log(insert_result.raw)
-
       return {
-        deleter_name: signer.name,
-        deleted_name: form_data.signed_email,
+        signer_name: signer.name,
+        signed_name: form_data.signed_email,
       }
     } else {
       return undefined
@@ -101,11 +97,16 @@ export class AdminService {
         uuid: deleteAdminDto.deleter_uuid,
       }
     })
+
     let deleted = await this.adminRepository.findOne({
       where: {
         uuid: form_data.deleted_uuid,
       }
     })
+
+    if (deleted == null) {
+      return undefined
+    }
 
     let st_result = await deleteUser(deleted.uuid)
     if (st_result.status == "OK") {
@@ -119,6 +120,8 @@ export class AdminService {
         deleter_name: deleter.name,
         deleted_name: deleted.name,
       }
+    } else {
+      return undefined
     }
   }
 

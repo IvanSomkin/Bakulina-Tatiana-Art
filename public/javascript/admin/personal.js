@@ -77,7 +77,7 @@ $('#delete-admin-form').on("submit", function (e) {
 })
 
 socket.on('deleteSuccess', (deleteSuccess) => {
-  toastr.info("Администратор '" + deleteSuccess.deleter_name +
+  toastr.success("Администратор '" + deleteSuccess.deleter_name +
     "' успешно удалил администратора с именем '" + deleteSuccess.deleted_name + "'")
 })
 

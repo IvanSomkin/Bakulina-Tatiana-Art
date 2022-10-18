@@ -5,6 +5,7 @@ import { ShopItemEntity } from './entities/shop-item.entity'
 import { OrderDto } from './dtos/order.dto'
 import { ShopItemDto } from './dtos/shop-item.dto'
 import { ShopItemsDto } from './dtos/shop-items.dto'
+import { OrderResultDto } from './dtos/order-result.dto'
 
 @Injectable()
 export class ShopService {

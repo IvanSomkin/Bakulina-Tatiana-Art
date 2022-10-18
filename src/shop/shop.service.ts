@@ -1,10 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable, NotFoundException } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { ShopItemEntity } from './entities/shop-item.entity'
-import { OrderDto } from './dtos/order.dto';
-import { ShopItemDto } from './dtos/shop-item.dto';
-import { ShopItemsDto } from './dtos/shop-items.dto';
+import { OrderDto } from './dtos/order.dto'
+import { ShopItemDto } from './dtos/shop-item.dto'
+import { ShopItemsDto } from './dtos/shop-items.dto'
 
 @Injectable()
 export class ShopService {
@@ -21,7 +21,7 @@ export class ShopService {
       relations: {
         images: false,
       },
-    });
+    })
 
     return {
       shop_items: shop_items
@@ -38,7 +38,7 @@ export class ShopService {
           image: true,
         },
       },
-    });
+    })
 
     if (shop_item_entity == null) {
       throw new NotFoundException('Shop item with id ' + item_id + ' was not found')
@@ -49,7 +49,7 @@ export class ShopService {
     return shop_item_dto
   }
 
-  async sendShopItemOrder(order: OrderDto) {
+  async sendShopItemOrder(order: OrderDto): Promise<OrderResultDto> {
     const shop_item = await this.shopItemRepository.findOne({
       where: {
         shop_item_id: order.shop_item_id,

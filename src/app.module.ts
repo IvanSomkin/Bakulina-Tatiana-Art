@@ -8,7 +8,7 @@ import { PortfolioModule } from './portfolio/portfolio.module'
 import { ContactsModule } from './contacts/contacts.module'
 import { AdminModule } from './admin/admin.module'
 import { AuthModule } from './auth/auth.module'
-import { EventsModule } from './events/events.module'
+import { PrivacyModule } from './privacy/privacy.module'
 
 @Module({
   imports: [
@@ -32,7 +32,7 @@ import { EventsModule } from './events/events.module'
     ContactsModule,
     AdminModule,
     AuthModule,
-    EventsModule,
+    PrivacyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

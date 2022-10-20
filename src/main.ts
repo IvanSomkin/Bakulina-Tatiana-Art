@@ -6,13 +6,11 @@ import supertokens from 'supertokens-node'
 import { join } from 'path'
 
 import { AppModule } from './app.module'
-import { LoadTimeInterceptor } from './common/interceptors/load-time.interceptor'
 import { HttpExceptionFilter } from './common/filters/app.filter'
 import { engine } from 'express-handlebars'
 
 
 import { SupertokensExceptionFilter, TryRefreshTokenExceptionFilter } from './auth/filters/auth.filter'
-import { AuthController } from './auth/auth.controller'
 import { middleware } from 'supertokens-node/framework/express'
 import { HttpService } from '@nestjs/axios'
 

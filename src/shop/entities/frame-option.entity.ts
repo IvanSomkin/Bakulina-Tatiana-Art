@@ -6,11 +6,11 @@ export class FrameOption {
   /*
   @PrimaryColumn()
   @ManyToOne(() => ShopItem, (shop_item) => shop_item.frame_options)
-  public shop_item_id: number;
+  public shopItemId: number;
   */
 
   @PrimaryColumn({ nullable: false, default: 0 })
-  public number: number
+  public frameOptionNumber: number
 
   @Column({ nullable: false, default: 0 })
   public price: number

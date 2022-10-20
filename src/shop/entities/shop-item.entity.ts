@@ -1,8 +1,8 @@
-import { Entity, Column, OneToMany, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
-import { FrameOption } from './frame-option.entity';
-import { Parameter } from './parameter.entity';
-import { ShopItemImageEntity } from './shop-item-image.entity';
+import { Entity, Column, OneToMany, PrimaryGeneratedColumn, JoinColumn } from 'typeorm'
+import { ApiProperty } from '@nestjs/swagger'
+import { FrameOption } from './frame-option.entity'
+import { Parameter } from './parameter.entity'
+import { ShopItemImageEntity } from './shop-item-image.entity'
 
 export enum ShopItemStatus {
   CREATED = "Created",
@@ -14,35 +14,28 @@ export enum ShopItemStatus {
 
 @Entity({ schema: "public", name: "shop_item" })
 export class ShopItemEntity {
-  @ApiProperty()
+
   @PrimaryGeneratedColumn({ primaryKeyConstraintName: "pk_shop_item_id" })
-  public shop_item_id: number;
+  public shopItemId: number
 
-  @ApiProperty()
   @Column({ nullable: false, default: 0 })
-  public shop_position: number;
+  public shopPosition: number
 
-  @ApiProperty()
   @Column({ nullable: true, default: null })
-  public name: string;
+  public name: string
 
-  @ApiProperty()
   @Column({ nullable: true, default: null })
-  public size_x: number;
+  public sizeX: number
 
-  @ApiProperty()
   @Column({ nullable: true, default: null })
-  public size_y: number;
+  public sizeY: number
 
-  @ApiProperty()
   @Column({ nullable: true, default: null })
-  public price: number;
+  public price: number
 
-  @ApiProperty()
   @Column({ nullable: false, default: 1 })
-  public amount_left: number;
+  public quantityLeft: number
 
-  @ApiProperty()
   @Column({
     nullable: false,
     type: "enum",
@@ -50,21 +43,18 @@ export class ShopItemEntity {
     enumName: "shop_item_status",
     default: ShopItemStatus.SELLING,
   })
-  public status: string;
+  public status: string
 
-  @OneToMany(() => ShopItemImageEntity, (shop_item_image) => shop_item_image.shop_item_id)
-  images: ShopItemImageEntity[];
+  @OneToMany(() => ShopItemImageEntity, (shopItemImage) => shopItemImage.shopItem)
+  images: ShopItemImageEntity[]
 
-  @ApiProperty()
   @Column({ nullable: false, default: '' })
-  public preview_image_path: string;
+  public previewImagePath: string
 
-  /*
-  @ManyToMany(() => Parameter)
+  /* @ManyToMany(() => Parameter)
   @JoinTable()
-  materials: Parameter[];
+  materials: Parameter[]
 
   @OneToMany(() => FrameOption, (frameOption) => frameOption.shop_item_id)
-  frame_options: FrameOption[];
-  */
+  frame_options: FrameOption[] */
 }

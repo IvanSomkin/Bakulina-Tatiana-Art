@@ -9,7 +9,7 @@ import { CustomerLayoutDto, LayoutDto } from '../common/dtos/layout.dto'
 @Controller()
 @ApiTags('shop')
 export class ShopController {
-  constructor(private readonly shopService: ShopService) { }
+  constructor (private readonly shopService: ShopService) { }
 
   @ApiOperation({
     summary: 'Visit the shop page'
@@ -17,11 +17,11 @@ export class ShopController {
   @Get(['/', 'shop'])
   @Render('shop')
   async getShopPage(): Promise<CustomerLayoutDto> {
-    let shop_items = await this.shopService.getShopItemsOnlyPreview()
+    let shopItems = await this.shopService.getShopItemsOnlyPreview()
     return {
       title: 'Магазин | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
       description: 'Авторские картины, скульптуры и батики мастерской Бакулиной Татьяны в её любимом городе — Петербурге.',
-      data: shop_items,
+      data: shopItems,
     }
   }
 
@@ -40,11 +40,11 @@ export class ShopController {
   @Get('shop/:id')
   @Render('shop_item')
   async getShopItemPage(@Param('id') id: number): Promise<CustomerLayoutDto> {
-    const shop_item = await this.shopService.getShopItem(id)
+    const shopItem = await this.shopService.getShopItem(id)
     return {
-      title: shop_item.name + ' | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
-      description: 'Страница картины ' + shop_item.name + '.',
-      data: shop_item,
+      title: shopItem.name + ' | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
+      description: 'Страница картины ' + shopItem.name + '.',
+      data: shopItem,
     }
   }
 

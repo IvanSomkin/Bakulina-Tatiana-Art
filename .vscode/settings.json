@@ -3,5 +3,8 @@
   "css.format.spaceAroundSelectorSeparator": true,
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
-  "explorer.copyRelativePathSeparator": "/"
+  "explorer.copyRelativePathSeparator": "/",
+  "typescript.format.insertSpaceAfterConstructor": true,
+  "typescript.format.semicolons": "remove",
+  "typescript.implementationsCodeLens.enabled": true
 }

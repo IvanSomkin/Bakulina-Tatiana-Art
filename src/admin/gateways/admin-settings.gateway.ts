@@ -13,7 +13,7 @@ import { DeleteAdminDto } from '../dtos/delete-admin.dto'
 import { RenameAdminDto } from '../dtos/rename-admin.dto'
 
 @WebSocketGateway()
-export class AdminGateway implements
+export class AdminSettingsGateway implements
   OnGatewayInit,
   OnGatewayConnection,
   OnGatewayDisconnect {

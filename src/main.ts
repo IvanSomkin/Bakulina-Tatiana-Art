@@ -10,7 +10,7 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter'
 import { engine } from 'express-handlebars'
 
 
-import { SupertokensExceptionFilter, TryRefreshTokenExceptionFilter } from './auth/filters/auth.filter'
+import { SupertokensExceptionFilter } from './auth/filters/auth.filter'
 import { middleware } from 'supertokens-node/framework/express'
 import { HttpService } from '@nestjs/axios'
 
@@ -60,7 +60,6 @@ async function bootstrap() {
   app.useGlobalFilters(
     new SupertokensExceptionFilter(),
     new HttpExceptionFilter(),
-    new TryRefreshTokenExceptionFilter(new HttpService),
   )
 
   console.log("App started!")

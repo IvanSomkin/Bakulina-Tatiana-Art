@@ -1,17 +1,17 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Render, Res, Session, UseGuards } from '@nestjs/common'
 import { AdminService } from './admin.service'
-import { ApiOperation, ApiResponse, ApiCookieAuth } from '@nestjs/swagger'
+import { ApiOperation, ApiResponse, ApiCookieAuth, ApiPayloadTooLargeResponse, ApiTags } from '@nestjs/swagger'
 
 import { ChangeShopItemDto } from '../admin/dtos/change-shop-item.dto'
 import { ShopService } from '../shop/shop.service'
 import { AuthGuard } from '../auth/guards/auth.guard'
-import { CreateShopItemResponseDto } from './dtos/create-shop-item-response.dto'
 import { Response } from 'express'
 import { SessionContainer } from 'supertokens-node/recipe/session'
-import { AdminLayoutDto, AdminSettingsLayoutDto, CustomerLayoutDto } from '../common/dtos/layout.dto'
+import { AdminSettingsLayoutDto, AdminShopItemLayoutDto, AdminShopLayoutDto, LayoutDto } from '../common/dtos/layout.dto'
 
+@ApiTags('admin')
 @Controller()
-export class AdminPageController {
+export class AdminController {
   constructor (
     private readonly adminService: AdminService,
     private readonly shopService: ShopService,
@@ -22,12 +22,8 @@ export class AdminPageController {
   })
   @Render('admin_login')
   @Get('administrator/login')
-  getLoginPage(@Res() res: Response): CustomerLayoutDto {
-    return {
-      title: 'Вход администратора | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
-      description: 'Страница входа в панель администратора.',
-      data: '',
-    }
+  getAdminLoginPage(): LayoutDto {
+    return {}
   }
 
   @ApiOperation({
@@ -35,15 +31,13 @@ export class AdminPageController {
   })
   @ApiCookieAuth()
   @UseGuards(AuthGuard)
-  @Render('admin')
+  @Render('admin_shop')
   @Get('administrator')
-  async getMainPage(@Session() session: SessionContainer, @Res() res: Response): Promise<AdminLayoutDto> {
-    let shopItems = await this.shopService.getShopItemsOnlyPreview()
+  async getAdminShopPage(@Session() session: SessionContainer): Promise<AdminShopLayoutDto> {
+    let shopItemEntities = await this.shopService.getShopItemEntities()
     return {
-      title: 'Администратор | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
-      description: 'Страница панели администратора.',
-      data: shopItems,
       adminName: await this.adminService.getAdminName(session.getUserId()),
+      shopItemEntities: shopItemEntities,
     }
   }
 
@@ -56,8 +50,6 @@ export class AdminPageController {
   @Get('administrator/settings')
   async getSettingsPage(@Session() session: SessionContainer, @Res() res: Response): Promise<AdminSettingsLayoutDto> {
     return {
-      title: 'Администратор | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
-      description: 'Страница личного кабинета администратора.',
       adminName: await this.adminService.getAdminName(session.getUserId()),
       adminUuid: session.getUserId(),
     }
@@ -70,26 +62,17 @@ export class AdminPageController {
   @UseGuards(AuthGuard)
   @Render('admin_shop_item')
   @Get('administrator/shop/:id')
-  async getShopItemPage(@Session() session: SessionContainer, @Param('id') id: number, @Res() res: Response): Promise<AdminLayoutDto> {
-    let shopItemDto = await this.shopService.getShopItem(id)
+  async getAdminShopItemPage(
+    @Session() session: SessionContainer,
+    @Param('id') id: number,
+  ): Promise<AdminShopItemLayoutDto> {
+    let shopItem = await this.shopService.getShopItem(id)
     return {
-      title: 'Редактирование (' + shopItemDto.name + ') | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
-      description: 'Страница редактирования работы ' + shopItemDto.name + '.',
-      data: shopItemDto,
       adminName: await this.adminService.getAdminName(session.getUserId()),
+      shopItem: shopItem,
     }
   }
 }
-
-
-
-@Controller()
-export class AdminSettingsController {
-  constructor (
-    private readonly adminService: AdminService,
-  ) { }
-}
-
 
 /*
 @Controller()

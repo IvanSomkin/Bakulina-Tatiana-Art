@@ -3,7 +3,6 @@ import supertokens from "supertokens-node"
 import EmailPassword from "supertokens-node/recipe/emailpassword"
 import Session, { refreshSession, SessionContainer } from "supertokens-node/recipe/session"
 import { ConfigInjectionToken, AuthModuleConfig } from "../interfaces/config.interface"
-import { TryRefreshTokenError } from '../filters/auth.filter'
 
 @Injectable()
 export class SupertokensService {

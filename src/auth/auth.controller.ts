@@ -2,12 +2,11 @@ import { Body, Controller, Injectable, Post, Put, Req, Res, UseGuards } from "@n
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 import { Request, Response } from "express"
 import { refreshSession } from "supertokens-node/recipe/session"
-import { SignInAdminDto } from "./dtos/sign-in-admin.dto"
-import { SignUpAdminDto } from "./dtos/sign-up-admin.dto"
+import { SignInAdminDto } from "./dtos/signin-admin.dto"
+import { SignUpAdminDto } from "./dtos/signup-admin.dto"
 import { AuthGuard } from "./guards/auth.guard"
 
 @ApiTags('auth')
-@Injectable()
 @Controller('auth')
 export class AuthController {
   constructor () { }

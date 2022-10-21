@@ -4,8 +4,8 @@
     <form class="admin-shop-item-form">
       <div class="admin-shop-item-form__image-choice">
         <div class="admin-shop-item-form__image-choice__container">
-          {{#each data.imagePaths}}
-          <div class="admin-shop-item-form__image-choice__element {{../data.id}}-{{@index}}" onclick="switchBigImage(this.id)">
+          {{#each shopItem.imagePaths}}
+          <div class="admin-shop-item-form__image-choice__element {{../shopItem.id}}-{{@index}}" onclick="switchBigImage(this.id)">
             <img src="/assets/pictures/shop/{{this}}">
           </div>
           {{/each}}
@@ -20,23 +20,26 @@
         {{/if}}
       </div>
       <div class="admin-shop-item-form__big-image">
-        <img id="big-image" src="/assets/pictures/shop/{{data.id}}/{{data.id}}-1.png">
+        <img id="big-image" src="/assets/pictures/shop/{{shopItem.id}}/{{shopItem.id}}-1.png">
       </div>
       <div class="admin-shop-item-form__description">
         <h1>
-          <input class="admin-shop-item-form__name" type="text" value="{{data.name}}" />
+          <input class="admin-shop-item-form__description__name" type="text" name="name" value="{{shopItem.name}}" />
         </h1>
         <h2>
-          <input class="admin-shop-item-form__price" type="text" value="{{data.price}}" />
+          <input class="admin-shop-item-form__description__price" type="text" name="price" value="{{shopItem.price}}" />
           ₽
         </h2>
-        <p class="admin-shop-item__description__detail">
+        <p class="admin-shop-item-form__description__detail">
           Размер:
-          <input class="admin-shop-item-form__size" type="text" name="sizeX" value="{{data.sizeX}}" />
+          <input class="admin-shop-item-form__description__size" type="text" name="sizeX" value="{{shopItem.sizeX}}" />
           x
-          <input class="admin-shop-item-form__size" type="text" name="sizeY" value="{{data.sizeY}}" />
+          <input class="admin-shop-item-form__description__size" type="text" name="sizeY" value="{{shopItem.sizeY}}" />
           cм
         </p>
+        <div>
+          <input class="admin-shop-item-form__submit-button" type="submit" value="Сохранить изменения" />
+        </div>
       </div>
     </form>
   </section>

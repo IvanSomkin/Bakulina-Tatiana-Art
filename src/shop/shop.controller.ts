@@ -3,12 +3,12 @@ import { OrderDto } from './dtos/order.dto'
 import { ShopService } from './shop.service'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger'
 import { LoadTimeInterceptor } from '../common/interceptors/load-time.interceptor'
-import { CustomerLayoutDto, LayoutDto } from '../common/dtos/layout.dto'
+import { ShopItemLayoutDto, ShopLayoutDto } from '../common/dtos/layout.dto'
 import { OrderResultDto } from './dtos/order-result.dto'
 
+@ApiTags('shop')
 @UseInterceptors(LoadTimeInterceptor)
 @Controller()
-@ApiTags('shop')
 export class ShopController {
   constructor (private readonly shopService: ShopService) { }
 
@@ -17,12 +17,10 @@ export class ShopController {
   })
   @Get(['/', 'shop'])
   @Render('shop')
-  async getShopPage(): Promise<CustomerLayoutDto> {
-    let shopItems = await this.shopService.getShopItemsOnlyPreview()
+  async getShopPage(): Promise<ShopLayoutDto> {
+    let shopItemEntities = await this.shopService.getShopItemEntities()
     return {
-      title: 'Магазин | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
-      description: 'Авторские картины, скульптуры и батики мастерской Бакулиной Татьяны в её любимом городе — Петербурге.',
-      data: shopItems,
+      shopItemEntities: shopItemEntities,
     }
   }
 
@@ -40,12 +38,10 @@ export class ShopController {
   })
   @Get('shop/:id')
   @Render('shop_item')
-  async getShopItemPage(@Param('id') id: number): Promise<CustomerLayoutDto> {
+  async getShopItemPage(@Param('id') id: number): Promise<ShopItemLayoutDto> {
     const shopItem = await this.shopService.getShopItem(id)
     return {
-      title: shopItem.name + ' | Мастерская Бакулиной Татьяны в Санкт-Петербурге',
-      description: 'Страница картины ' + shopItem.name + '.',
-      data: shopItem,
+      shopItem: shopItem,
     }
   }
 
@@ -57,8 +53,8 @@ export class ShopController {
     description: 'The shop item order has been sent'
   })
   @ApiResponse({
-    status: 404,
-    description: 'The shop item id is incorrect'
+    status: 500,
+    description: 'Internal server error was encountered.'
   })
   @Post('shop/order')
   async sendShopItemOrder(@Body() order: OrderDto): Promise<OrderResultDto> {

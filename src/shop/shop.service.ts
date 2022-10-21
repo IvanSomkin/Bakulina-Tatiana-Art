@@ -14,8 +14,8 @@ export class ShopService {
     private shopItemRepository: Repository<ShopItemEntity>,
   ) { }
 
-  async getShopItemsOnlyPreview(): Promise<ShopItemsDto> {
-    const shopItems = await this.shopItemRepository.find({
+  async getShopItemEntities(): Promise<ShopItemEntity[]> {
+    const shopItemEntities = await this.shopItemRepository.find({
       order: {
         position: "ASC",
       },
@@ -23,10 +23,7 @@ export class ShopService {
         images: false,
       },
     })
-
-    return {
-      shopItems: shopItems
-    }
+    return shopItemEntities
   }
 
   async getShopItem(itemId: number): Promise<ShopItemDto> {

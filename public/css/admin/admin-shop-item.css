@@ -103,3 +103,39 @@
 .admin-shop-item-form__description__detail {
   font-size: 22px;
 }
+
+.admin-shop-item-form__description__size {
+  width: 40px;
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 1.4em;
+  color: black;
+}
+
+.admin-shop-item-form__submit-button {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  margin-top: 38px;
+  margin-bottom: 60px;
+  cursor: pointer;
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+
+.admin-shop-item-form__submit-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.admin-shop-item-form__submit-button[disabled] {
+  color: white;
+  background-color: gray;
+  border: 2px solid gray;
+}

@@ -2,11 +2,9 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ShopModule } from './shop/shop.module'
 import { DatabaseModule } from './database/database.module'
-import { PortfolioModule } from './portfolio/portfolio.module'
-import { ContactsModule } from './contacts/contacts.module'
 import { AdminModule } from './admin/admin.module'
 import { AuthModule } from './auth/auth.module'
-import { PrivacyModule } from './privacy/privacy.module'
+import { ContactsController, PrivacyController } from './app.controller'
 
 @Module({
   imports: [
@@ -26,10 +24,12 @@ import { PrivacyModule } from './privacy/privacy.module'
     }),
     ShopModule,
     DatabaseModule,
-    ContactsModule,
     AdminModule,
     AuthModule,
-    PrivacyModule,
   ],
+  controllers: [
+    ContactsController,
+    PrivacyController
+  ]
 })
 export class AppModule { }

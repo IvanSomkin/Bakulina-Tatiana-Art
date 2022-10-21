@@ -10,6 +10,6 @@
   "html.format.wrapAttributes": "preserve",
   "html.format.wrapLineLength": 0,
   "workbench.editor.pinnedTabSizing": "shrink",
-  "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.tabSizing": "fit",
   "html.autoClosingTags": false,
 }

@@ -2,26 +2,26 @@
   <section class="background_white margin-vertical_small">
     <div class="shop-item">
       <div class="shop-item__image-choice">
-        {{#each data.imagePaths}}
+        {{#each shopItem.imagePaths}}
         <div class="shop-item__image-choice__element" id="image-{{@index}}" onclick="switchBigImage(this.id)">
           <img src="/assets/pictures/shop/{{this}}">
         </div>
         {{/each}}
       </div>
       <div class="shop-item__big-image">
-        <img id="big-image" src="/assets/pictures/shop/{{data.id}}/{{data.id}}-1.png">
+        <img id="big-image" src="/assets/pictures/shop/{{shopItem.id}}/{{shopItem.id}}-1.png">
       </div>
       <div class="shop-item__description">
-        <h1 class="shop-item__description__name">{{data.name}}</h1>
-        <h2 class="shop-item__description__price">{{data.price}} ₽</h2>
-        <p class="shop-item__description__detail">Размер: {{data.sizeX}} x {{data.sizeY}} cм</p>
+        <h1 class="shop-item__description__name">{{shopItem.name}}</h1>
+        <h2 class="shop-item__description__price">{{shopItem.price}} ₽</h2>
+        <p class="shop-item__description__detail">Размер: {{shopItem.sizeX}} x {{shopItem.sizeY}} cм</p>
       </div>
     </div>
     </div>
     <div class="shop-item-order">
       <div class="shop-item-order__form-container">
         <form class="shop-item-order-form margin-horizontal_large">
-          <h1 class="shop-item-order-form__title">Заказ работы "{{data.name}}"</h1>
+          <h1 class="shop-item-order-form__title">Заказ работы "{{shopItem.name}}"</h1>
           <input type="hidden" name="shop_item_id" value="{{data.id}}">
           <h2 class="shop-item-order-form__label">Ваше имя:</h2>
           <input class="shop-item-order-form__input_text" type="text" name="name" required></br>

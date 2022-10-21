@@ -7,7 +7,6 @@ function switchBigImage(imageId) {
 }
 
 function enableImageChoice(imageChoiceClassName, imageChoiceElementClassName) {
-  console.log(imageChoiceClassName, imageChoiceElementClassName)
   let firstImageId = $("." + imageChoiceClassName).children("." + imageChoiceElementClassName)[0].id
   localStorage.setItem("shop-item-big-image-id", firstImageId)
   $("#" + firstImageId).css("border-style", "solid")

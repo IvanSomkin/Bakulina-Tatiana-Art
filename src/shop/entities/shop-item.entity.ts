@@ -75,13 +75,13 @@ export class ShopItemEntity {
   public previewImagePath: string
 
   @OneToMany(() => ShopItemImageEntity, (shopItemImage) => shopItemImage.shopItem)
-  images: ShopItemImageEntity[]
+  public images: ShopItemImageEntity[]
 
   @ManyToOne(() => Admin, (admin) => admin.shopItems)
   @JoinColumn({
-    name: "created_by_admin_uuid",
+    name: "created_by_admin_uuid", referencedColumnName: "uuid"
   })
-  admin: Admin
+  public admin: Admin
 
   /* @ManyToMany(() => Parameter)
   @JoinTable()

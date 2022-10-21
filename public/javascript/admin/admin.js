@@ -1,3 +1,3 @@
-/*$(function () {
-  $(".shop-sortable")[0].sortable()
-})*/
+$(function () {
+  $(".shop-sortable").sortable()
+})

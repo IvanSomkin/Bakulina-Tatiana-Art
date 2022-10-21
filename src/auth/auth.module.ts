@@ -4,7 +4,6 @@ import {
   NestModule,
   DynamicModule,
 } from '@nestjs/common'
-import { AuthController } from './auth.controller'
 import { AuthMiddleware } from './middleware/auth.middleware'
 import { ConfigInjectionToken, AuthModuleConfig } from './interfaces/config.interface'
 import { SupertokensService } from './supertokens/supertokens.service'
@@ -17,7 +16,7 @@ import { HttpModule } from '@nestjs/axios'
   })],
   providers: [],
   exports: [],
-  controllers: [AuthController],
+  controllers: [],
 })
 export class AuthModule implements NestModule {
 

@@ -2,7 +2,7 @@
   <section>
     <p class="admin__header">
       <a class="admin__header__name" href="/administrator/settings">{{adminName}}</a> |
-      <a class="admin__header__signout" onclick="signout()">Выйти</a>
+      <a class="admin__header__signout" onclick="signOut()">Выйти</a>
     </p>
   </section>
   <section>
@@ -16,15 +16,14 @@
       {{/each}}
     </div>
   </section>
-  <script src="/javascript/admin/admin-shop-edit.js"></script>
 </main>
 <script>
-  function signoutAjax() {
+  function signOutAjax() {
     return new Promise(function (resolve, reject) {
       $.ajax({
-        url: '/auth/signout',
-        type: 'POST',
-        contentType: 'application/json',
+        url: "/auth/signout",
+        type: "POST",
+        contentType: "application/json",
         success: function (response) {
           location.href = "/administrator/login"
         }
@@ -32,7 +31,7 @@
     })
   }
 
-  async function signout() {
-    await signoutAjax()
+  async function signOut() {
+    await signOutAjax()
   }
 </script>

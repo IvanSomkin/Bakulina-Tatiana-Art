@@ -78,7 +78,9 @@ export class ShopItemEntity {
   images: ShopItemImageEntity[]
 
   @ManyToOne(() => Admin, (admin) => admin.shopItems)
-  @JoinColumn()
+  @JoinColumn({
+    name: "created_by_admin_uuid",
+  })
   admin: Admin
 
   /* @ManyToMany(() => Parameter)

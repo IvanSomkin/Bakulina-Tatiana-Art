@@ -6,7 +6,7 @@ import supertokens from 'supertokens-node'
 import { join } from 'path'
 
 import { AppModule } from './app.module'
-import { HttpExceptionFilter } from './common/filters/app.filter'
+import { HttpExceptionFilter } from './common/filters/http-exception.filter'
 import { engine } from 'express-handlebars'
 
 

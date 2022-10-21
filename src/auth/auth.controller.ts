@@ -2,40 +2,15 @@ import { Body, Controller, Injectable, Post, Put, Req, Res, UseGuards } from "@n
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 import { Request, Response } from "express"
 import { refreshSession } from "supertokens-node/recipe/session"
-import { SignInAdminDto } from "./dtos/signin-admin.dto"
-import { SignUpAdminDto } from "./dtos/signin-admin.dto copy"
+import { SignInAdminDto } from "./dtos/sign-in-admin.dto"
+import { SignUpAdminDto } from "./dtos/sign-up-admin.dto"
 import { AuthGuard } from "./guards/auth.guard"
 
 @ApiTags('auth')
 @Injectable()
 @Controller('auth')
 export class AuthController {
-  constructor() { }
-
-  @ApiOperation({
-    summary: 'Log in as admin'
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'The user has logged in as admin'
-  })
-  @Post('signin')
-  signinAsAdmin(@Body() SigninAdminDto: SignInAdminDto) {
-    return {}
-  }
-
-  @ApiOperation({
-    summary: 'Sign up as admin'
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'The admin user has been created'
-  })
-  @UseGuards(AuthGuard)
-  @Post('signup')
-  signupAsAdmin(@Body() signupAdminDto: SignUpAdminDto) {
-    return {}
-  }
+  constructor () { }
 
   @ApiOperation({
     summary: 'Sign out as admin'
@@ -43,7 +18,7 @@ export class AuthController {
   @ApiCookieAuth()
   @UseGuards(AuthGuard)
   @Post('signout')
-  signoutAsAdmin(): void { }
+  signOutAsAdmin(): void { }
 
   @ApiOperation({
     summary: 'Sign out as admin'

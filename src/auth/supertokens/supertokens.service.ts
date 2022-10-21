@@ -7,7 +7,7 @@ import { TryRefreshTokenError } from '../filters/auth.filter'
 
 @Injectable()
 export class SupertokensService {
-  constructor(@Inject(ConfigInjectionToken) private config: AuthModuleConfig) {
+  constructor (@Inject(ConfigInjectionToken) private config: AuthModuleConfig) {
     supertokens.init({
       appInfo: config.appInfo,
       supertokens: {

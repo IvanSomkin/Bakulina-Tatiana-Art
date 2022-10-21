@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ShopService } from '../shop/shop.service'
 import { ShopItemEntity } from '../shop/entities/shop-item.entity'
-import { AdminPageController, AdminPersonalController } from './admin.controller'
+import { AdminPageController, AdminSettingsController } from './admin.controller'
 import { AdminService } from './admin.service'
 import { Admin } from './entities/admin.entity'
 import { AuthMiddleware } from '../auth/middleware/auth.middleware'
@@ -23,7 +23,7 @@ import { AdminGateway } from './gateways/admin.gateway'
   ],
   controllers: [
     AdminPageController,
-    AdminPersonalController
+    AdminSettingsController
   ],
   providers: [
     AdminService,

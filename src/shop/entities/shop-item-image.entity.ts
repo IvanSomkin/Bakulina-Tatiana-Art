@@ -12,7 +12,7 @@ export class ShopItemImageEntity {
   })
   public id: number
 
-  @ManyToOne(() => ShopItemEntity, shop_item => shop_item.images)
+  @ManyToOne(() => ShopItemEntity, shopItem => shopItem.images)
   @JoinColumn({
     name: "shop_item_id",
     referencedColumnName: "id",
@@ -20,7 +20,7 @@ export class ShopItemImageEntity {
   })
   public shopItem: ShopItemEntity
 
-  @OneToOne(() => ImageEntity, image => image.image_id)
+  @OneToOne(() => ImageEntity)
   @JoinColumn({
     name: "image_id",
     referencedColumnName: "id",

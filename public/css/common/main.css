@@ -1,0 +1,16 @@
+/* Main (style) */
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 50vh;
+}
+
+main > section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 14px 0px;
+}

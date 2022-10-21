@@ -1,0 +1,167 @@
+/* Header (behavior) */
+
+.header-size {
+  min-height: 40px;
+  height: 10vh;
+}
+
+.temporary-fixed-position {
+  position: fixed;
+}
+
+.relative-header-space-filler {
+  position: relative;
+}
+
+/* Desktop header menu */
+
+.desktop-header {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  width: 100%;
+  top: 0;
+
+  background-color: white;
+  border-bottom: 2px solid #FFB700
+}
+
+@media screen and (max-width: 960px) {
+  .desktop-header {
+    display: none;
+  }
+}
+
+.desktop-header__title {
+  display: flex;
+  flex-grow: 0.3;
+  justify-content: center;
+  align-items: center;
+}
+
+a.desktop-header__title {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+  font-size: 26px;
+  color: black;
+  margin: 0;
+}
+
+.desktop-header__menu {
+  display: flex;
+  flex-grow: 0.6;
+  flex-direction: row;
+}
+
+.desktop-header__menu__item {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.desktop-header__menu a {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 20px;
+  color: black;
+  margin: 0;
+}
+
+/* Mobile header menu */
+
+.mobile-header {
+  display: none;
+  flex-direction: row;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 3;
+  border-bottom: 2px solid #FFB700;
+  background-color: white;
+}
+
+@media screen and (max-width: 960px) {
+  .mobile-header {
+    display: flex;
+  }
+}
+
+.mobile-header__title {
+  display: flex;
+  width: 70%;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+  font-size: 26px;
+  color: black;
+}
+
+@media screen and (max-width: 360px) {
+  .mobile-header__title {
+    font-size: 18px;
+  }
+}
+
+.mobile-header__menu-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  padding: 10px 0px;
+
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 26px;
+  color: black;
+
+  box-sizing: border-box;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 360px) {
+  .mobile-header__menu-button {
+    font-size: 16px;
+  }
+}
+
+.mobile-menu-background {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  z-index: 2;
+  background-color: white;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+  height: 60%;
+  top: 20%;
+}
+
+@media screen and (max-width: 960px) {
+  .mobile-menu {
+    display: flex;
+  }
+}
+
+.mobile-menu__item {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px;
+
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 28px;
+  color: black;
+}

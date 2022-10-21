@@ -17,21 +17,21 @@ export class AdminGateway implements
   OnGatewayInit,
   OnGatewayConnection,
   OnGatewayDisconnect {
-  constructor(private adminService: AdminService) { }
+  constructor (private adminService: AdminService) { }
 
   @WebSocketServer() server: Server
 
   @SubscribeMessage('renameAdmin')
   async handleRenameAdmin(client: Socket, renameAdminDto: RenameAdminDto): Promise<void> {
-    const old_new_names = await this.adminService.renameAdmin(renameAdminDto)
-    this.server.emit('renameSuccess', old_new_names)
+    const oldNewNames = await this.adminService.renameAdmin(renameAdminDto)
+    this.server.emit('renameSuccess', oldNewNames)
   }
 
   @SubscribeMessage('signUpAdmin')
   async handleSignUpAdmin(client: Socket, signUpAdminNameDto: SignUpAdminNameDto): Promise<void> {
-    const signer_signed_names = await this.adminService.signUpAdmin(signUpAdminNameDto)
-    if (signer_signed_names != undefined) {
-      this.server.emit('signUpSuccess', signer_signed_names)
+    const signerSignedNames = await this.adminService.signUpAdmin(signUpAdminNameDto)
+    if (signerSignedNames != undefined) {
+      this.server.emit('signUpSuccess', signerSignedNames)
     } else {
       this.server.emit('signUpError')
     }
@@ -39,11 +39,11 @@ export class AdminGateway implements
 
   @SubscribeMessage('deleteAdmin')
   async handleDeleteAdmin(client: Socket, deleteAdminDto: DeleteAdminDto): Promise<void> {
-    const deleter_deleted_names = await this.adminService.deleteAdmin(deleteAdminDto)
-    if (deleter_deleted_names != undefined) {
-      this.server.emit('deleteSuccess', deleter_deleted_names)
+    const deleterDeletedNames = await this.adminService.deleteAdmin(deleteAdminDto)
+    if (deleterDeletedNames != undefined) {
+      this.server.emit('deleteSuccess', deleterDeletedNames)
     } else {
-      this.server.emit('deleteError', deleter_deleted_names)
+      this.server.emit('deleteError', deleterDeletedNames)
     }
   }
 

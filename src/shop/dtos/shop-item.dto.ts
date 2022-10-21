@@ -2,16 +2,16 @@ import { ApiProperty } from '@nestjs/swagger'
 import { ShopItemEntity } from '../entities/shop-item.entity'
 
 export class ShopItemDto {
-  constructor(shopItemEntity: ShopItemEntity) {
-    this.id = shopItemEntity.shop_item_id
+  constructor (shopItemEntity: ShopItemEntity) {
+    this.id = shopItemEntity.id
     this.name = shopItemEntity.name
     this.price = shopItemEntity.price
-    this.size_x = shopItemEntity.size_x
-    this.size_y = shopItemEntity.size_y
-    this.image_paths = [];
+    this.sizeX = shopItemEntity.sizeX
+    this.sizeY = shopItemEntity.sizeY
+    this.imagePaths = []
     if (shopItemEntity.images != undefined) {
       for (let i = 0; i < shopItemEntity.images.length; i++) {
-        this.image_paths.push(shopItemEntity.images[i].image.path)
+        this.imagePaths.push(shopItemEntity.images[i].image.path)
       }
     }
   }
@@ -26,11 +26,11 @@ export class ShopItemDto {
   price: number
 
   @ApiProperty()
-  size_x: number
+  sizeX: number
 
   @ApiProperty()
-  size_y: number
+  sizeY: number
 
   @ApiProperty()
-  image_paths: string[]
+  imagePaths: string[]
 }

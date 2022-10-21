@@ -2,5 +2,8 @@ import { ApiProperty } from '@nestjs/swagger'
 
 export class OrderResultDto {
   @ApiProperty()
-  order_successful: boolean
+  orderSuccessful: boolean
+
+  @ApiProperty()
+  orderErrorMessage?: string
 }

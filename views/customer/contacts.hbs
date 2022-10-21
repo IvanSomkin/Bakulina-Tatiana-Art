@@ -1,12 +1,20 @@
-<main class="background_6">
-  <section class="background_white margin-horizontal_large margin-vertical_small">
-    <div class="contacts">
-      <h1 class="contacts__title">Связаться со мной</h1>
-      <address class="contacts__item">Тел. +7 (911) 228-83-92 (с 10 до 22 часов ежедневно)</address>
-      <div class="contacts__line"></div>
-      <address class="contacts__item">master.bakulina.tatiana@gmail.com</address>
-      <div class="contacts__line"></div>
-      <address class="contacts__item">г. Санкт-Петербург, ул. Харьковская, д. 6/1, пом. 30</address>
-    </div>
-  </div>
-</main>
+<!doctype html>
+<html lang="ru">
+
+<head>
+  {{> head}}
+  {{> head_customer}}
+  <link href="/css/customer/contacts.css" rel="stylesheet" />
+</head>
+
+<body>
+  {{> header}}
+  {{> main_contacts }}
+  <footer>
+    {{> footer_section_privacy}}
+    {{> footer_section_load_time}}
+  </footer>
+  {{> mobile_menu_toggle}}
+</body>
+
+</html>

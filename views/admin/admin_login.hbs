@@ -1,61 +1,14 @@
-<main class="height-100 flex-column-vertical-center background_1">
-  <section class="background_white margin-horizontal_extra-large margin-vertical_0">
-    <form id="login-form">
-      <h1 class="login-form__title">АВТОРИЗАЦИЯ</h1>
-      <h2 class="login-form__label">Логин</h2>
-      <input id="email" type="text" class="login-form__input_text"></br>
-      <p id="email-error" class="login-form__error"></p>
-      <h2 class="login-form__label">Пароль</h2>
-      <input id="password" type="password" class="login-form__input_text"></br>
-      <p id="password-error" class="login-form__error"></p>
-      <p id="success" class="login-form__success"></p>
-      <input type="submit" value="Войти" class="login-form__submit-button"/>
-    </form>
-  </section>
-</main>
-<script>
-  async function signinAjax(){
-    return new Promise(function(resolve, reject){
-      $.ajax({
-        url: '/auth/signin',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-          "formFields": [
-            {
-              "id": "email",
-              "value": $('#email')[0].value,
-            },
-            {
-              "id": "password",
-              "value": $('#password')[0].value,
-            }
-          ]
-        }),
-        success: function(response) {
-          if (response.status == 'FIELD_ERROR') {
-            for (let i = 0; i < response.formFields.length; i++) {
-              $('#' + response.formFields[i].id + "-error").text(response.formFields[i].error);
-            }
-            return;
-          }
-          if (response.status == 'WRONG_CREDENTIALS_ERROR') {
-            $('#password-error').text('Wrong password');
-            return;
-          }
-          $('#success').text('Login successful');
-          setTimeout(function() {
-            location.href = "/administrator"
-          }, 500);
-        }
-      });
-    });
-  }
+<!doctype html>
+<html lang="ru">
 
-  $('#login-form').submit(async function(e){
-    e.preventDefault();
-    $('#email-error').text('');
-    $('#password-error').text('');
-    const result = await signinAjax();
-  });
-</script>
+<head>
+  {{> head}}
+  <link href="/css/admin/admin-login.css" rel="stylesheet" />
+  <meta name="robots" content="noindex">
+</head>
+
+<body class="background_white">
+  {{> main_admin_login}}
+</body>
+
+</html>

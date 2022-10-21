@@ -6,5 +6,10 @@
   "explorer.copyRelativePathSeparator": "/",
   "typescript.format.insertSpaceAfterConstructor": true,
   "typescript.format.semicolons": "remove",
-  "typescript.implementationsCodeLens.enabled": true
+  "typescript.implementationsCodeLens.enabled": true,
+  "html.format.wrapAttributes": "preserve",
+  "html.format.wrapLineLength": 0,
+  "workbench.editor.pinnedTabSizing": "shrink",
+  "workbench.editor.tabSizing": "shrink",
+  "html.autoClosingTags": false,
 }

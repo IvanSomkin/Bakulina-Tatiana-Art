@@ -2,10 +2,10 @@ import { ApiProperty } from '@nestjs/swagger'
 
 export class DeleteAdminDto {
   @ApiProperty()
-  public deleter_uuid: string
+  public deleterUuid: string
 
   @ApiProperty()
-  public form_data: {
-    deleted_uuid: string
+  public formData: {
+    deletedUuid: string
   }
 }

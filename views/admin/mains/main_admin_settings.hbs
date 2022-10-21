@@ -1,0 +1,54 @@
+<main>
+  {{> admin_header_go_to_admin}}
+  <section class="margin-vertical_0 margin-horizontal_large">
+    <div class="margin-horizontal_small">
+      <h1 class="admin-settings__title">Личные настройки</h1>
+      <div class="admin-settings__rename-admin-form">
+        <form class="rename-admin-form">
+          <h2 class="rename-admin-form__label">Изменить ваше имя:</h2>
+          <input class="rename-admin-form__input_text new-name" type="text" name="newName" value="{{adminName}}">
+          <input class="rename-admin-form__submit-button rename-admin-button" type="submit" value="Изменить имя" />
+        </form>
+      </div>
+    </div>
+  </section>
+  <section class="margin-vertical_0 margin-horizontal_large">
+    <div class="margin-horizontal_small">
+      <h1 class="admin-settings__title">Создать нового администратора</h1>
+      <div class="admin-settings__sign-up-admin-form">
+        <form class="sign-up-admin-form">
+          <h2 class="sign-up-admin-form__label">Введите E-mail:</h2>
+          <input class="sign-up-admin-form__input_text signed-email" type="text" name="signedEmail" value=""
+            required>
+          <h2 class="sign-up-admin-form__label">Введите пароль:</h2>
+          <input class="sign-up-admin-form__input_text signed-password" type="password" name="signed_password"
+            value="" required>
+          <h2 class="sign-up-admin-form__label">Введите отображаемое имя</h2>
+          <input class="sign-up-admin-form__input_text signed-name" type="text" name="signedName" value=""
+            required>
+          <p class="sign-up-admin-form__error"></p>
+          <p class="sign-up-admin-form__success"></p>
+          <input class="sign-up-admin-form__submit-button" type="submit" value="Создать администратора"
+            class="signup-admin-button" />
+        </form>
+      </div>
+      <h1 class="admin-settings__title">Удалить администратора</h1>
+      <div class="admin-settings__delete-admin-form">
+        <form class="delete-admin-form">
+          <h2 class="delete-admin-form__label">Введите удаляемый uuid:</h2>
+          <input class="delete-admin-form__input_text deleted-uuid" name="deletedUuid" type="text" value="">
+          <p class="delete-admin-form__error"></p>
+          <p class="delete-admin-form__success"></p>
+          <input class="delete-admin-form__submit-button delete-admin-button" type="submit"
+            value="Удалить администратора" />
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="https://cdn.socket.io/4.3.2/socket.io.min.js"
+  integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous">
+
+  </script>
+<script src="/javascript/admin/admin-settings.js"></script>
+<script src="/javascript/admin/admin-signout.js"></script>

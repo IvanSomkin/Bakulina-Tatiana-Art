@@ -1,0 +1,210 @@
+/* Admin settings page */
+
+.admin-settings__title {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Rename admin form */
+
+.rename-admin-form-title {
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.rename-admin-form__label {
+  margin-bottom: 15px;
+}
+
+.rename-admin-form__input_text {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+.rename-admin-form__checkbox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 38px;
+}
+
+.rename-admin-form__checkbox__button {
+  width: 25px;
+  height: 25px;
+  appearance: auto;
+}
+
+.rename-admin-form__checkbox__label {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 24px;
+  color: black;
+  margin: 0px;
+  margin-left: 10px;
+}
+
+.rename-admin-form__submit-button {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  margin-top: 38px;
+  margin-bottom: 60px;
+  cursor: pointer;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+.rename-admin-form__submit-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.rename-admin-form__submit-button[disabled] {
+  color: white;
+  background-color: gray;
+  border: 2px solid gray;
+}
+
+/* Sign up admin form */
+
+.sign-up-admin-form-title {
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.sign-up-admin-form__label {
+  margin-bottom: 15px;
+}
+
+.sign-up-admin-form__input_text {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+.sign-up-admin-form__checkbox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 38px;
+}
+
+.sign-up-admin-form__checkbox__button {
+  width: 25px;
+  height: 25px;
+  appearance: auto;
+}
+
+.sign-up-admin-form__checkbox__label {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 24px;
+  color: black;
+  margin: 0px;
+  margin-left: 10px;
+}
+
+.sign-up-admin-form__submit-button {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  cursor: pointer;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+.sign-up-admin-form__submit-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.sign-up-admin-form__submit-button[disabled] {
+  color: white;
+  background-color: gray;
+  border: 2px solid gray;
+}
+
+/* Sign up admin form */
+
+.delete-admin-form-title {
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.delete-admin-form__label {
+  margin-bottom: 15px;
+}
+
+.delete-admin-form__input_text {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+.delete-admin-form__checkbox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 38px;
+}
+
+.delete-admin-form__checkbox__button {
+  width: 25px;
+  height: 25px;
+  appearance: auto;
+}
+
+.delete-admin-form__checkbox__label {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 24px;
+  color: black;
+  margin: 0px;
+  margin-left: 10px;
+}
+
+.delete-admin-form__submit-button {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  margin-top: 60px;
+  margin-bottom: 120px;
+  cursor: pointer;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+.delete-admin-form__submit-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.delete-admin-form__submit-button[disabled] {
+  color: white;
+  background-color: gray;
+  border: 2px solid gray;
+}

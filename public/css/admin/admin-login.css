@@ -1,0 +1,60 @@
+/* Administator login form */
+
+.login-form {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.login-form__title {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.login-form__label {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.login-form__input_text {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+.login-form__submit-button {
+  color: white;
+  background-color: black;
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  cursor: pointer;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+.login-form__submit-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.login-form__error {
+  color: red;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-form__success {
+  color: green;
+  margin-top: 20px;
+  text-align: center;
+}

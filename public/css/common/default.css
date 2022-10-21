@@ -1,0 +1,245 @@
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/assets/fonts/EBGaramond/EBGaramond-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/assets/fonts/EBGaramond/EBGaramond-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/assets/fonts/EBGaramond/EBGaramond-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Droid Serif';
+  src: url('/assets/fonts/DroidSerif/DroidSerif-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Default tags */
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  font-size: 100%;
+  background-color: #2E2E2F;
+}
+
+h1 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+  font-size: 36px;
+  color: black;
+  margin: 0px;
+}
+
+h2 {
+  font-family: 'EB Garamond', serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: black;
+  margin: 0px;
+  margin-top: 38px;
+  margin-bottom: 28px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  text-align: center;
+}
+
+p {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.4em;
+  color: black;
+  margin: 0;
+}
+
+ol {
+  counter-reset: item;
+  padding-left: 0;
+  margin: 0;
+}
+
+li {
+  display: block;
+}
+
+li > h2::before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+
+li > p::before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+  font-weight: bold;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+input {
+  appearance: none;
+}
+
+/* Study specific */
+
+.load-time {
+  color: white;
+}
+
+/* Style classes */
+
+.display-none {
+  display: none;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.height-100 {
+  height: 100%;
+  min-height: 100vh;
+}
+
+.screen-height {
+  height: 100vh;
+  min-height: 500px;
+}
+
+.flex-basis-100 {
+  flex-basis: 100%;
+}
+
+.flex-column-vertical-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.margin-vertical_0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.margin-horizontal_small {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.margin-horizontal_large {
+  margin-left: 17vw;
+  margin-right: 17vw;
+}
+
+@media screen and (max-width: 1100px) {
+  .margin-horizontal_large {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .margin-horizontal_large {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.margin-horizontal_extra-large {
+  margin-left: 35vw;
+  margin-right: 35vw;
+}
+
+@media screen and (max-width: 1100px) {
+  .margin-horizontal_extra-large {
+    margin-left: 20vw;
+    margin-right: 20vw;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .margin-horizontal_extra-large {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.margin-vertical_small {
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+.margin-vertical_large {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.background_white {
+  background-color: white;
+}
+
+.background_1 {
+  background-image: url(/assets/pictures/background/background-1-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+.background_2 {
+  background-image: url(/assets/pictures/background/background-2-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+.background_3 {
+  background-image: url(/assets/pictures/background/background-3-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+.background_4 {
+  background-image: url(/assets/pictures/background/background-4-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+.background_5 {
+  background-image: url(/assets/pictures/background/background-5-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}
+
+.background_6 {
+  background-image: url(/assets/pictures/background/background-6-8bit.png);
+  background-attachment: fixed;
+  background-position: top;
+  background-size: cover;
+}

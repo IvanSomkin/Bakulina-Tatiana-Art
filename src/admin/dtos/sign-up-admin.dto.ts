@@ -2,12 +2,12 @@ import { ApiProperty } from '@nestjs/swagger'
 
 export class SignUpAdminNameDto {
   @ApiProperty()
-  public signer_uuid: string
+  public signerUuid: string
 
   @ApiProperty()
-  public form_data: {
-    signed_email: string,
-    signed_password: string,
-    signed_name: string
+  public formData: {
+    signedEmail: string,
+    signedPassword: string,
+    signedName: string
   }
 }

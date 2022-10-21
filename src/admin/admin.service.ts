@@ -5,8 +5,6 @@ import { Repository } from 'typeorm'
 import { RemoveShopItemDto } from './dtos/remove-shop-item.dto'
 import { ChangeShopItemDto } from './dtos/change-shop-item.dto'
 import { Admin } from './entities/admin.entity'
-import { stringify } from 'querystring'
-import { Response } from 'express'
 import { signUp } from 'supertokens-node/lib/build/recipe/emailpassword'
 import { deleteUser } from 'supertokens-node'
 import { DeleteAdminDto } from './dtos/delete-admin.dto'
@@ -15,7 +13,7 @@ import { SignUpAdminNameDto } from './dtos/sign-up-admin.dto'
 
 @Injectable()
 export class AdminService {
-  constructor(
+  constructor (
     @InjectRepository(ShopItemEntity)
     private shopItemRepository: Repository<ShopItemEntity>,
     @InjectRepository(Admin)
@@ -35,53 +33,52 @@ export class AdminService {
 
   async renameAdmin(renameAdminDto: RenameAdminDto) {
 
-    let form_data = renameAdminDto.form_data
+    let formData = renameAdminDto.formData
 
     let admin: Admin = await this.adminRepository.findOne(
       {
         where: {
-          uuid: renameAdminDto.admin_uuid,
+          uuid: renameAdminDto.adminUuid,
         }
       }
     )
     if (admin === null) {
       admin = this.adminRepository.create({
-        uuid: renameAdminDto.admin_uuid
+        uuid: renameAdminDto.adminUuid
       })
     }
-    let old_name = admin.name
-    admin.name = form_data.new_name
+    let oldName = admin.name
+    admin.name = formData.newName
     await this.adminRepository.save(admin)
     return {
-      old_name: old_name,
-      new_name: form_data.new_name,
+      oldName: oldName,
+      newName: formData.newName,
     }
   }
 
   async signUpAdmin(signUpAdminNameDto: SignUpAdminNameDto) {
 
-    let form_data = signUpAdminNameDto.form_data
+    let formData = signUpAdminNameDto.formData
 
     let signer = await this.adminRepository.findOne({
       where: {
-        uuid: signUpAdminNameDto.signer_uuid
+        uuid: signUpAdminNameDto.signerUuid
       },
     })
 
-    let st_result = await signUp(
-      form_data.signed_email,
-      form_data.signed_password,
+    let stResult = await signUp(
+      formData.signedEmail,
+      formData.signedPassword,
     )
 
-    if (st_result.status == "OK") {
-      let insert_result = await this.adminRepository.insert({
-        uuid: st_result.user.id,
-        name: form_data.signed_name,
+    if (stResult.status == "OK") {
+      await this.adminRepository.insert({
+        uuid: stResult.user.id,
+        name: formData.signedName,
       })
-
       return {
-        signer_name: signer.name,
-        signed_name: form_data.signed_name,
+        signerName: signer.name,
+        signedName: formData.signedName,
       }
     } else {
       return undefined
@@ -90,37 +87,37 @@ export class AdminService {
 
   async deleteAdmin(deleteAdminDto: DeleteAdminDto) {
 
-    let form_data = deleteAdminDto.form_data
+    let formData = deleteAdminDto.formData
 
     let deleter = await this.adminRepository.findOne({
       where: {
-        uuid: deleteAdminDto.deleter_uuid,
+        uuid: deleteAdminDto.deleterUuid,
       }
     })
 
     let deleted = await this.adminRepository.findOne({
       where: {
-        uuid: form_data.deleted_uuid,
+        uuid: formData.deletedUuid,
       }
     })
 
 
-    let st_result = await deleteUser(form_data.deleted_uuid)
+    let stResult = await deleteUser(formData.deletedUuid)
 
     if (deleted == null) {
       return undefined
     }
 
-    if (st_result.status == "OK") {
-      let delete_result = await this.adminRepository.delete({
+    if (stResult.status == "OK") {
+      let deleteResult = await this.adminRepository.delete({
         uuid: deleted.uuid
       })
 
-      console.log(delete_result.raw)
+      console.log(deleteResult.raw)
 
       return {
-        deleter_name: deleter.name,
-        deleted_name: deleted.name,
+        deleterName: deleter.name,
+        deletedName: deleted.name,
       }
     } else {
       return undefined
@@ -128,33 +125,33 @@ export class AdminService {
   }
 
   async createShopItem(): Promise<number> {
-    let new_item: ShopItemEntity = this.shopItemRepository.create()
-    const max_shop_position = await this.shopItemRepository
+    let newItem: ShopItemEntity = this.shopItemRepository.create()
+    const maxShopPosition = await this.shopItemRepository
       .createQueryBuilder("shop_item")
-      .select("MAX(shop_item.shop_position)", "max")
+      .select("MAX(shop_item.position)", "max")
       .getRawOne()
-    new_item.shop_position = max_shop_position + 1
-    new_item.status = ShopItemStatus.CREATED
-    this.shopItemRepository.save(new_item)
-    return new_item.shop_item_id
+    newItem.position = maxShopPosition + 1
+    newItem.status = ShopItemStatus.CREATED
+    this.shopItemRepository.save(newItem)
+    return newItem.id
   }
 
   async removeShopItem(removeShopItemDto: RemoveShopItemDto) {
-    const item_id = removeShopItemDto.shop_item_id
+    const itemId = removeShopItemDto.shopItemId
     let item = await this.shopItemRepository.findOne(
       {
         where: {
-          shop_item_id: item_id
+          id: itemId
         }
       }
     )
     item.status = ShopItemStatus.REMOVED
     this.shopItemRepository.save(item)
-    this.shopItemRepository.softDelete(item_id)
+    this.shopItemRepository.softDelete(itemId)
   }
 
   async changeShopItem(changeShopItemDto: ChangeShopItemDto) {
-    const item: ShopItemEntity = changeShopItemDto.shop_item
+    const item: ShopItemEntity = changeShopItemDto.shopItem
     this.shopItemRepository.save(item)
   }
 }

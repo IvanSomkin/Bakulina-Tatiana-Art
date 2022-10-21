@@ -9,15 +9,15 @@ import { OrderResultDto } from './dtos/order-result.dto'
 
 @Injectable()
 export class ShopService {
-  constructor(
+  constructor (
     @InjectRepository(ShopItemEntity)
     private shopItemRepository: Repository<ShopItemEntity>,
   ) { }
 
   async getShopItemsOnlyPreview(): Promise<ShopItemsDto> {
-    const shop_items = await this.shopItemRepository.find({
+    const shopItems = await this.shopItemRepository.find({
       order: {
-        shop_position: "ASC",
+        position: "ASC",
       },
       relations: {
         images: false,
@@ -25,14 +25,14 @@ export class ShopService {
     })
 
     return {
-      shop_items: shop_items
+      shopItems: shopItems
     }
   }
 
-  async getShopItem(item_id: number): Promise<ShopItemDto> {
-    let shop_item_entity = await this.shopItemRepository.findOne({
+  async getShopItem(itemId: number): Promise<ShopItemDto> {
+    let shopItemEntity = await this.shopItemRepository.findOne({
       where: {
-        shop_item_id: item_id
+        id: itemId
       },
       relations: {
         images: {
@@ -41,29 +41,28 @@ export class ShopService {
       },
     })
 
-    if (shop_item_entity == null) {
-      throw new NotFoundException('Shop item with id ' + item_id + ' was not found')
+    if (shopItemEntity == null) {
+      throw new NotFoundException('Shop item with id ' + itemId + ' was not found')
     }
 
-    const shop_item_dto = new ShopItemDto(shop_item_entity)
+    const shopItemDto = new ShopItemDto(shopItemEntity)
 
-    return shop_item_dto
+    return shopItemDto
   }
 
-  async sendShopItemOrder(order: OrderDto): Promise<OrderResultDto> {
-    const shop_item = await this.shopItemRepository.findOne({
+  async sendShopItemOrder(order: OrderDto): Promise<void> {
+    const shopItem = await this.shopItemRepository.findOne({
       where: {
-        shop_item_id: order.shop_item_id,
+        id: order.shopItemId,
       },
       relations: {
         images: false,
       },
     })
-    if (shop_item == null) {
+    if (shopItem == null) {
       throw new NotFoundException(
-        'Shop item with id ' + order.shop_item_id + ' was not found and could not be ordered'
+        'Shop item with id ' + order.shopItemId + ' was not found and could not be ordered'
       )
     }
-    return { order_successful: true }
   }
 }

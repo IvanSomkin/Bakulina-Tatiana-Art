@@ -1,9 +1,10 @@
-import { Body, Controller, Get, Param, Res, Render, Post, Redirect, UseInterceptors, NotFoundException, UseFilters } from '@nestjs/common'
+import { Body, Controller, Get, Param, Res, Render, Post, Redirect, UseInterceptors, NotFoundException, UseFilters, HttpException } from '@nestjs/common'
 import { OrderDto } from './dtos/order.dto'
 import { ShopService } from './shop.service'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger'
 import { LoadTimeInterceptor } from '../common/interceptors/load-time.interceptor'
 import { CustomerLayoutDto, LayoutDto } from '../common/dtos/layout.dto'
+import { OrderResultDto } from './dtos/order-result.dto'
 
 @UseInterceptors(LoadTimeInterceptor)
 @Controller()
@@ -60,7 +61,17 @@ export class ShopController {
     description: 'The shop item id is incorrect'
   })
   @Post('shop/order')
-  async sendShopItemOrder(@Body() order: OrderDto) {
-    return await this.shopService.sendShopItemOrder(order)
+  async sendShopItemOrder(@Body() order: OrderDto): Promise<OrderResultDto> {
+    try {
+      await this.shopService.sendShopItemOrder(order)
+      return {
+        orderSuccessful: true,
+      }
+    } catch (err) {
+      return {
+        orderSuccessful: false,
+        orderErrorMessage: err.message,
+      }
+    }
   }
 }

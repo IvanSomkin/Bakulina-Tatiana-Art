@@ -1,56 +1,16 @@
-<main>
-  {{> admin_header_go_to_admin}}
-  <section id="admin-item-section" class="background_white margin-vertical_small">
-    <div class="admin-item">
-      <div class="admin-item__mini-image-choice">
-        {{#each data.image_paths}}
-        <div id="{{../data.id}}-{{@index}}" onclick="switchBigImage(this.id)"
-          class="admin-item__mini-image-choice__image">
-          <img src="/assets/pictures/shop/{{this}}">
-        </div>
-        {{/each}}
-        <!--{{#if data.image_paths}}
-        <div id="add-image" onclick="addImage()" class="admin-item__mini-image-choice__add">
-          <img src="/assets/pictures/shop/add.png">
-        </div>
-        {{/if}}-->
-      </div>
-      <div class="admin-item__big-image">
-        <img id="big-image" src="/assets/pictures/shop/{{data.id}}/{{data.id}}-1.png">
-      </div>
-      <div class="item__description">
-        <h1 class="item__description__name">{{data.name}}</h1>
-        <h2 class="item__description__price">{{data.price}} ₽</h2>
-        <p class="item__description__detail">Размер: {{data.size_x}} x {{data.size_y}} cм</p>
-      </div>
-    </div>
-    </div>
-    <!--
-    <div class="item-error">
-      <h1 class="item-error__title">Работа с таким артикулом не найдена!</h1>
-      <h2 class="item-error__text">Попробуйте проверить правильность адресной строки.</h2>
-      <a class="width-100" href="/">
-          <button class="item-error__go-back-button">Вернуться на главную</button>
-        </a>
-    </div>
-    -->
-  </section>
-</main>
-<script>
-  let first_image_id = $(".admin-item__mini-image-choice")[0].getElementsByClassName("admin-item__mini-image-choice__image")[0].id
-  localStorage.setItem('shop-item-big-image-id', first_image_id)
-  $("#" + first_image_id)[0].style.borderStyle = "solid"
+<!doctype html>
+<html lang="ru">
 
-  function switchBigImage(image_id) {
-    let prev_image_id = localStorage.getItem('shop-item-big-image-id')
-    $("#big-image")[0].src = $("#" + image_id)[0].getElementsByTagName("img")[0].src
-    $("#" + prev_image_id)[0].style.borderStyle = "double"
-    $("#" + image_id)[0].style.borderStyle = "solid"
-    localStorage.setItem('shop-item-big-image-id', image_id)
-  }
-</script>
-<script>
-  function addImage() {
+<head>
+  {{> head}}
+  {{> head_admin_logged_in}}
+  <link href="/css/admin/admin-header.css" rel="stylesheet" />
+  <link href="/css/admin/admin-shop-item.css" rel="stylesheet" />
+  <meta name="robots" content="noindex">
+</head>
 
-  }
-</script>
+<body class="background_white">
+  {{> main_admin_shop_item}}
+</body>
+
+</html>

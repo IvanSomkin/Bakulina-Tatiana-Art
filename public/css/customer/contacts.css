@@ -1,0 +1,62 @@
+/* Contacts view section */
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+  width: 100%;
+}
+
+.contacts__title {
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
+  font-size: 28px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 24px;
+}
+
+@media screen and (max-width: 960px) {
+  .contacts__title {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .contacts__title {
+    font-size: 18px;
+  }
+}
+
+.contacts__item {
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 12px 0px;
+  padding: 0px 30px;
+}
+
+@media screen and (max-width: 960px) {
+  .contacts__item {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .contacts__item {
+    font-size: 14px;
+  }
+}
+
+.contacts__line {
+  width: 10%;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  margin: 5px 0px;
+}

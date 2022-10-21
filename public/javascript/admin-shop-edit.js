@@ -1,3 +1,0 @@
-/*$(function () {
-  $("#shop-sortable").sortable()
-})*/

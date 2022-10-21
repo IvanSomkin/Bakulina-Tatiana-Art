@@ -1,5 +1,4 @@
-import { Entity, PrimaryColumn, Column, PrimaryGeneratedColumn } from 'typeorm'
-import { ApiProperty } from '@nestjs/swagger'
+/* import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
 
 export enum ParameterType {
   MATERIAL = "Material",
@@ -10,11 +9,10 @@ export enum ParameterType {
 
 @Entity({ schema: "public", name: "parameter" })
 export class Parameter {
-  @ApiProperty()
+
   @PrimaryGeneratedColumn({ primaryKeyConstraintName: "pk_parameter_id" })
   public id: number
 
-  @ApiProperty()
   @Column({
     nullable: false,
     type: "enum",
@@ -23,7 +21,6 @@ export class Parameter {
   })
   public type: string
 
-  @ApiProperty()
   @Column({ nullable: false, default: "Безымянный" })
   public name: string
-}
+} */

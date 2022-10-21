@@ -23,15 +23,18 @@ async function bootstrap() {
 
   app.engine('.hbs', engine({
     extname: '.hbs',
-    defaultLayout: 'customer',
-    layoutsDir: 'views/layouts',
+    defaultLayout: false,
     partialsDir: [
       join(__dirname, '..', 'views/partials'),
-      join(__dirname, '..', 'views/partials/mains'),
+      join(__dirname, '..', 'views/admin/mains'),
+      join(__dirname, '..', 'views/customer/mains'),
     ],
     helpers: {
       isTrueOrUndefined(value: boolean) {
         return value == true || value == undefined
+      },
+      hasLessThan10Elements(arr: any[]) {
+        return arr == undefined || arr.length < 10
       },
     },
   }))

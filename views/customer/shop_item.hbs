@@ -1,88 +1,21 @@
-<main class="background_3">
-  <section class="background_white margin-vertical_small">
-    <div class="item">
-      <div class="item__mini-image-choice">
-        {{#each data.image_paths}}
-        <div id="{{../id}}-{{@index}}" onclick="switchBigImage(this.id)" class="item__mini-image-choice__image">
-          <img src="/assets/pictures/shop/{{this}}">
-        </div>
-        {{/each}}
-      </div>
-      <div class="item__big-image">
-        <img id="big-image" src="/assets/pictures/shop/{{data.id}}/{{data.id}}-1.png">
-      </div>
-      <div class="item__description">
-        <h1 class="item__description__name">{{data.name}}</h1>
-        <h2 class="item__description__price">{{data.price}} ₽</h2>
-        <p class="item__description__detail">Размер: {{data.size_x}} x {{data.size_y}} cм</p>
-      </div>
-    </div>
-    </div>
-    <div class="item-order">
-      <div class="item-order__form">
-        <form id="order-form" class="margin-horizontal_large">
-          <h1 class="order-form__title">Заказ работы "{{data.name}}"</h1>
-          <input type="hidden" name="shop_item_id" value="{{data.id}}">
-          <h2 class="order-form__label">Ваше имя:</h2>
-          <input type="text" class="order-form__input_text" name="name" required></br>
-          <h2 class="order-form__label">Ваш E-Mail:</h2>
-          <input type="text" class="order-form__input_text" name="email" required></br>
-          <h2 class="order-form__label">Ваш телефон:</h2>
-          <input type="text" class="order-form__input_text" name="phone" required></br>
-          <div class="order-form__checkbox">
-            <input type="checkbox" class="order-form__checkbox__button" name="personal" id="personal-check" required>
-            <p class="order-form__checkbox__label">Я даю согласие на обработку своего имени, E-Mail и телефона</p>
-          </div>
-          <input type="submit" value="Связаться со мной по деталям заказа"
-            class="order-form__submit-button personal-submit-button" id="order-button" />
-        </form>
-      </div>
-      <div class="item-order__confirmation">
-        <h1 class="item-order__confirmation__title">Ваш заказ отправлен!</h1>
-        <h2 class="item-order__confirmation__text">Мы свяжемся с Вами по поводу оплаты и доставки в ближайшее время!
-        </h2>
-        <a class="width-100" href="/">
-          <button class="item-order__confirmation__go-back-button">Вернуться на главную</button>
-        </a>
-      </div>
-    </div>
-    <!--
-    <div class="item-error">
-      <h1 class="item-error__title">Работа с таким артикулом не найдена!</h1>
-      <h2 class="item-error__text">Попробуйте проверить правильность адресной строки.</h2>
-      <a class="width-100" href="/">
-          <button class="item-error__go-back-button">Вернуться на главную</button>
-        </a>
-    </div>
-    -->
-  </section>
-</main>
-<script>
-  let first_image_id = $(".item__mini-image-choice")[0].getElementsByClassName("item__mini-image-choice__image")[0].id
-  localStorage.setItem('shop-item-big-image-id', first_image_id)
-  $("#" + first_image_id)[0].style.borderStyle = "solid"
+<!doctype html>
+<html lang="ru">
 
-  function switchBigImage(image_id) {
-    let prev_image_id = localStorage.getItem('shop-item-big-image-id')
-    $("#big-image")[0].src = $("#" + image_id)[0].getElementsByTagName("img")[0].src
-    $("#" + prev_image_id)[0].style.borderStyle = "double"
-    $("#" + image_id)[0].style.borderStyle = "solid"
-    localStorage.setItem('shop-item-big-image-id', image_id)
-  }
-</script>
-<script>
-  $('.item-order__confirmation')[0].style.display = 'none'
-  $('#order-form').submit(function (e) {
-    e.preventDefault()
-    $.ajax({
-      url: '/shop/order',
-      type: 'POST',
-      data: $('#order-form').serialize(),
-      success: function () {
-        $('.item-order__form')[0].style.display = 'none'
-        $('.item-order__confirmation')[0].style.display = 'flex'
-      }
-    })
-  });
-</script>
-<script src="/javascript/personal-check.js"></script>
+<head>
+  {{> head}}
+  {{> head_customer}}
+  <link href="/css/customer/shop-item.css" rel="stylesheet" />
+</head>
+
+<body>
+  {{> header}}
+  {{> main_shop_item}}
+  <footer>
+    {{> footer_section_contacts}}
+    {{> footer_section_privacy}}
+    {{> footer_section_load_time}}
+  </footer>
+  {{> mobile_menu_toggle}}
+</body>
+
+</html>

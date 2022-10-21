@@ -1,0 +1,325 @@
+/* Shop item view section */
+
+.shop-item {
+  display: flex;
+  flex-direction: row;
+  min-height: 105vh;
+  width: 100%;
+}
+
+@media screen and (max-width: 960px) {
+  .shop-item {
+    flex-direction: column;
+  }
+}
+
+.shop-item__image-choice {
+  flex-grow: 0.5;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  padding: 40px 0px;
+  padding-bottom: 80px
+}
+
+@media screen and (max-width: 960px) {
+  .shop-item__image-choice {
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+  }
+}
+
+.shop-item__image-choice__element {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  padding: 5px;
+  border: 3px double gray;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.shop-item__image-choice__element > img {
+  width: 100%;
+  height: 100%;
+  scale: 1.5;
+}
+
+.shop-item__big-image {
+  flex-grow: 2;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 0px;
+}
+
+@media screen and (max-width: 960px) {
+  .shop-item__big-image {
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 20px;
+  }
+}
+
+.shop-item__big-image > img {
+  max-height: 90vh;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.shop-item__description {
+  display: flex;
+  flex-grow: 1.5;
+  flex-basis: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  padding-bottom: 80px;
+}
+
+@media screen and (max-width: 960px) {
+  .shop-item__description {
+    align-items: center;
+  }
+}
+
+.shop-item__description__name {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 42px;
+  color: black;
+  margin: 0px;
+  padding-right: 20px;
+}
+
+@media screen and (max-width: 960px) {
+  .shop-item__description__name {
+    font-size: 48px;
+  }
+}
+
+.shop-item__description__price {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 28px;
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 28px;
+}
+
+@media screen and (max-width: 960px) {
+  .shop-item__description__price {
+    font-size: 42px;
+  }
+}
+
+.shop-item__description__detail {
+  font-size: 22px;
+}
+
+@media screen and (max-width: 960px) {
+  .shop-item__description__detail {
+    font-size: 22px;
+  }
+}
+
+/* Shop item error section */
+
+.shop-item-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 500px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.shop-item-error__title {
+  text-align: center;
+}
+
+.shop-item-error__text {
+  text-align: center;
+}
+
+.shop-item-error__go-back-button {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  appearance: none;
+  width: 50%;
+  padding: 20px;
+  margin-top: 38px;
+  margin-bottom: 38px;
+  cursor: pointer;
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 1100px) {
+  .shop-item-error__go-back-button {
+    width: 100%;
+  }
+}
+
+.shop-item-error__go-back-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.shop-item-error__go-back-button[disabled] {
+  color: white;
+  background-color: gray;
+  border: 2px solid gray;
+}
+
+/* Shop item order section */
+
+.shop-item-order {
+  width: 100%;
+  height: 800px;
+  border-top: 1px solid rgb(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.shop-item-order__form-container {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.shop-item-order-form__title {
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.shop-item-order-form__label {
+  margin-bottom: 15px;
+}
+
+.shop-item-order-form__input_text {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+.shop-item-order-form__checkbox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 38px;
+}
+
+.shop-item-order-form__checkbox__button {
+  width: 25px;
+  height: 25px;
+  appearance: auto;
+}
+
+.shop-item-order-form__checkbox__label {
+  font-family: 'EB Garamond', serif;
+  font-weight: normal;
+  font-size: 24px;
+  color: black;
+  margin: 0px;
+  margin-left: 10px;
+}
+
+.shop-item-order-form__submit-button {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  appearance: none;
+  width: 100%;
+  padding: 20px;
+  margin-top: 38px;
+  margin-bottom: 60px;
+  cursor: pointer;
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+.shop-item-order-form__submit-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.shop-item-order-form__submit-button[disabled] {
+  color: white;
+  background-color: gray;
+  border: 2px solid gray;
+}
+
+.shop-item-order__confirmation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 38px 0px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.shop-item-order__confirmation__title {
+  margin-top: 38px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.shop-item-order__confirmation__text {
+  font-weight: normal;
+  margin-top: 38px;
+  margin-bottom: 9px;
+  text-align: center;
+}
+
+.shop-item-order__confirmation__go-back-button {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  appearance: none;
+  width: 50%;
+  padding: 20px;
+  margin-top: 38px;
+  margin-bottom: 38px;
+  cursor: pointer;
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 1100px) {
+  .shop-item-order__confirmation__go-back-button {
+    width: 100%;
+  }
+}
+
+.shop-item-order__confirmation__go-back-button:hover {
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.shop-item-order__confirmation__go-back-button[disabled] {
+  color: white;
+  background-color: gray;
+  border: 2px solid gray;
+}

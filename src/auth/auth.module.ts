@@ -11,9 +11,7 @@ import { AuthGuard } from './guards/auth.guard'
 import { HttpModule } from '@nestjs/axios'
 
 @Module({
-  imports: [HttpModule.register({
-
-  })],
+  imports: [],
   providers: [],
   exports: [],
   controllers: [],

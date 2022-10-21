@@ -1,9 +1,9 @@
-import { Body, Controller, Injectable, Post, Put, Req, Res, UseGuards } from "@nestjs/common"
+import { Body, Controller, Post, Req, Res, UseGuards } from "@nestjs/common"
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger"
 import { Request, Response } from "express"
+import { signIn } from "supertokens-node/recipe/emailpassword"
 import { refreshSession } from "supertokens-node/recipe/session"
 import { SignInAdminDto } from "./dtos/signin-admin.dto"
-import { SignUpAdminDto } from "./dtos/signup-admin.dto"
 import { AuthGuard } from "./guards/auth.guard"
 
 @ApiTags('auth')
@@ -12,21 +12,11 @@ export class AuthController {
   constructor () { }
 
   @ApiOperation({
-    summary: 'Sign out as admin'
+    summary: 'Sign in as admin'
   })
-  @ApiCookieAuth()
-  @UseGuards(AuthGuard)
-  @Post('signout')
-  signOutAsAdmin(): void { }
-
-  @ApiOperation({
-    summary: 'Sign out as admin'
-  })
-  @ApiCookieAuth()
-  @UseGuards(AuthGuard)
-  @Post('session/refresh')
-  async refreshTokenAsAdmin(@Req() req: Request, @Res() res: Response) {
-    return await refreshSession(req, res)
+  @Post('signin')
+  async signInAdmin(@Body() signInAdminDto: SignInAdminDto) {
+    return await signIn(signInAdminDto.formFields[0].value, signInAdminDto.formFields[1].value)
   }
 
   /*

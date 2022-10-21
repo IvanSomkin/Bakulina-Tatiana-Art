@@ -30,8 +30,4 @@ import { AdminSettingsGateway } from './gateways/admin-settings.gateway'
     AdminSettingsGateway,
   ],
 })
-export class AdminModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes('*')
-  }
-}
+export class AdminModule { }
